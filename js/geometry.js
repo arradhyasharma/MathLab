@@ -406,7 +406,7 @@ const quadResult =
 function updateQuadrilateralFields() {
   const shape = quadType.value;
 
-  // Hide all optional fields first.
+  // Hide optional fields first.
   quadSecondField.hidden = true;
   quadThirdField.hidden = true;
   quadFourthField.hidden = true;
