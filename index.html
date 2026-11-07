@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+    content="MathLab is an interactive mathematics workspace for exploring Class 9 mathematics through experiments, visualisations and challenges.">
+
+  <meta name="theme-color" content="#F5F2EA">
+
+  <title>MathLab — Mathematics, Explored</title>
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- New MathLab design system -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <link rel="stylesheet" href="css/labs.css">
+
+  <!-- Navigation and theme -->
+  <script src="js/navigation.js" defer></script>
+</head>
+
+<body>
+  <div class="ml-site">
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="ml-header">
+      <div class="ml-header-inner">
+
+        <a class="ml-brand" href="index.html" aria-label="MathLab home">
+          <span class="ml-brand-mark">M<span>.</span></span>
+          <span>MathLab</span>
+        </a>
+
+        <nav class="ml-header-nav" aria-label="Main navigation">
+          <a href="index.html" aria-current="page">Overview</a>
+          <a href="pages/algebra.html">Explore labs</a>
+          <a href="pages/challenges.html">Challenges</a>
+          <a href="pages/formulas.html">Formula library</a>
+        </nav>
+
+        <div class="ml-header-controls">
+          <span class="ml-edition">CLASS 09</span>
+
+          <button
+            class="ml-icon-button"
+            id="themeToggle"
+            type="button"
+            aria-label="Switch colour theme"
+            title="Switch colour theme"
+          >
+            <span id="themeIcon" aria-hidden="true">◐</span>
+            <span class="ml-theme-label">Theme</span>
+          </button>
+
+          <button
+            class="ml-menu-button"
+            id="menuToggle"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+            aria-controls="sidebar"
+          >
+            Menu
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ================= PAGE LAYOUT ================= -->
+
+    <div class="ml-page-grid">
+
+      <!-- SIDEBAR -->
+
+      <aside class="ml-sidebar" id="sidebar">
+
+        <p class="ml-sidebar-heading">WORKSPACE</p>
+
+        <a class="ml-sidebar-link is-active"
+          href="index.html"
+          aria-current="page">
+          <span class="ml-sidebar-number">00</span>
+          <span>Overview</span>
+        </a>
+
+        <p class="ml-sidebar-heading">MATHEMATICS LABS</p>
+
+        <a class="ml-sidebar-link" href="pages/algebra.html">
+          <span class="ml-sidebar-number">01</span>
+          <span>Algebra</span>
+        </a>
+
+        <a class="ml-sidebar-link" href="pages/geometry.html">
+          <span class="ml-sidebar-number">02</span>
+          <span>Geometry</span>
+        </a>
+
+        <a class="ml-sidebar-link" href="pages/coordinates.html">
+          <span class="ml-sidebar-number">03</span>
+          <span>Coordinate geometry</span>
+        </a>
+
+        <a class="ml-sidebar-link" href="pages/statistics.html">
+          <span class="ml-sidebar-number">04</span>
+          <span>Statistics</span>
+        </a>
+
+        <a class="ml-sidebar-link" href="pages/probability.html">
+          <span class="ml-sidebar-number">05</span>
+          <span>Probability</span>
+        </a>
+
+        <p class="ml-sidebar-heading">REFERENCE</p>
+
+        <a class="ml-sidebar-link" href="pages/challenges.html">
+          <span class="ml-sidebar-number">06</span>
+          <span>Challenge centre</span>
+        </a>
+
+        <a class="ml-sidebar-link" href="pages/formulas.html">
+          <span class="ml-sidebar-number">07</span>
+          <span>Formula library</span>
+        </a>
+
+        <div class="ml-sidebar-bottom">
+          <p>A space to question, test and understand.</p>
+          <a href="pages/about.html">About this project ↗</a>
+        </div>
+
+      </aside>
+
+      <!-- MAIN CONTENT -->
+
+      <main class="ml-main">
+
+        <!-- HERO -->
+
+        <section class="ml-hero">
+
+          <div class="ml-hero-copy">
+
+            <p class="ml-eyebrow">
+              THE INTERACTIVE MATHEMATICS LAB
+            </p>
+
+            <h1 class="ml-hero-title">
+              Mathematics is better
+              <em>when explored.</em>
+            </h1>
+
+            <p class="ml-hero-description">
+              Move beyond memorising formulas. Experiment with
+              numbers, visualise relationships and discover the
+              logic behind Class 9 mathematics.
+            </p>
+
+            <div class="ml-hero-actions">
+              <a class="ml-button ml-button-primary"
+                href="pages/algebra.html">
+                Enter the labs <span aria-hidden="true">↗</span>
+              </a>
+
+              <a class="ml-text-link" href="#learning-map">
+                View learning map ↓
+              </a>
+            </div>
+
+            <p class="ml-hero-note">
+              LEARN BY DOING · BUILT FOR CLASS 09
+            </p>
+
+          </div>
+
+          <!-- SCIENTIFIC ILLUSTRATION -->
+
+          <div class="ml-hero-visual">
+
+            <div class="ml-hero-art">
+
+              <svg
+                viewBox="0 0 440 360"
+                role="img"
+                aria-label="A mathematical curve plotted on a coordinate grid"
+              >
+
+                <defs>
+                  <pattern
+                    id="ml-grid"
+                    width="30"
+                    height="30"
+                    patternUnits="userSpaceOnUse"
+                  >
+                    <path
+                      d="M 30 0 L 0 0 0 30"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-opacity="0.14"
+                      stroke-width="1"
+                    />
+                  </pattern>
+                </defs>
+
+                <rect
+                  x="24"
+                  y="18"
+                  width="390"
+                  height="310"
+                  fill="url(#ml-grid)"
+                />
+
+                <!-- Axes -->
+                <line
+                  x1="45" y1="180"
+                  x2="400" y2="180"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+
+                <line
+                  x1="220" y1="30"
+                  x2="220" y2="315"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+
+                <path
+                  d="M392 174 L400 180 L392 186"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+
+                <path
+                  d="M214 38 L220 30 L226 38"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+
+                <!-- Curve -->
+                <path
+                  d="M72 280 C125 280 155 248 184 205 S246 115 275 100 S340 73 372 55"
+                  fill="none"
+                  stroke="#C56B4B"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+
+                <!-- Points and guides -->
+                <circle
+                  cx="220" cy="180" r="4"
+                  fill="#254E45"
+                />
+
+                <circle
+                  cx="275" cy="100" r="6"
+                  fill="#C56B4B"
+                />
+
+                <line
+                  x1="275" y1="100"
+                  x2="275" y2="180"
+                  stroke="#C56B4B"
+                  stroke-width="1.2"
+                  stroke-dasharray="5 5"
+                />
+
+                <line
+                  x1="220" y1="100"
+                  x2="275" y2="100"
+                  stroke="#C56B4B"
+                  stroke-width="1.2"
+                  stroke-dasharray="5 5"
+                />
+
+                <!-- Labels -->
+                <g
+                  fill="currentColor"
+                  font-family="monospace"
+                  font-size="12"
+                >
+                  <text x="405" y="198">x</text>
+                  <text x="234" y="31">y</text>
+                  <text x="230" y="198">0</text>
+                  <text x="283" y="91">P</text>
+                  <text x="285" y="196">x₁</text>
+                  <text x="190" y="94">y₁</text>
+                </g>
+
+              </svg>
+
+            </div>
+
+            <div class="ml-visual-caption">
+              FIG. 01 — COORDINATE PLANE
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- OVERVIEW STRIP -->
+
+        <section class="ml-section">
+
+          <div class="ml-grid ml-overview-grid">
+
+            <div>
+              <p class="ml-eyebrow">05</p>
+              <p class="ml-overview-label">INTERACTIVE LABS</p>
+            </div>
+
+            <div>
+              <p class="ml-eyebrow">02</p>
+              <p class="ml-overview-label">LEARNING RESOURCES</p>
+            </div>
+
+            <div>
+              <p class="ml-eyebrow">09</p>
+              <p class="ml-overview-label">TARGET CLASS</p>
+            </div>
+
+            <div>
+              <p class="ml-eyebrow">OUR APPROACH</p>
+              <p class="ml-overview-statement">
+                Understand first. Calculate next.
+              </p>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- LEARNING MAP -->
+
+        <section class="ml-section" id="learning-map">
+
+          <div class="ml-section-heading">
+
+            <div>
+              <p class="ml-eyebrow">01 / THE LEARNING MAP</p>
+              <h2 class="ml-section-title">
+                Choose a field to explore.
+              </h2>
+            </div>
+
+            <p class="ml-section-description">
+              Each lab turns a mathematical idea into something
+              you can investigate yourself.
+            </p>
+
+          </div>
+
+          <div class="ml-subject-list">
+
+            <a class="ml-subject-item" href="pages/algebra.html">
+
+              <span class="ml-subject-number">01</span>
+
+              <div class="ml-subject-content">
+                <h3 class="ml-subject-title">Algebra</h3>
+                <p class="ml-subject-description">
+                  Explore expressions, polynomials and linear equations.
+                </p>
+                <div class="ml-subject-meta">
+                  <span>SYMBOLS &amp; RELATIONSHIPS</span>
+                  <span>ax² + bx + c</span>
+                </div>
+              </div>
+
+              <span class="ml-subject-arrow" aria-hidden="true">↗</span>
+
+            </a>
+
+            <a class="ml-subject-item" href="pages/geometry.html">
+
+              <span class="ml-subject-number">02</span>
+
+              <div class="ml-subject-content">
+                <h3 class="ml-subject-title">Geometry</h3>
+                <p class="ml-subject-description">
+                  Investigate triangles, angles and properties of shapes.
+                </p>
+                <div class="ml-subject-meta">
+                  <span>SHAPES &amp; SPACE</span>
+                  <span>∠A + ∠B + ∠C</span>
+                </div>
+              </div>
+
+              <span class="ml-subject-arrow" aria-hidden="true">↗</span>
+
+            </a>
+
+            <a class="ml-subject-item" href="pages/coordinates.html">
+
+              <span class="ml-subject-number">03</span>
+
+              <div class="ml-subject-content">
+                <h3 class="ml-subject-title">Coordinate geometry</h3>
+                <p class="ml-subject-description">
+                  Plot points and understand positions on a plane.
+                </p>
+                <div class="ml-subject-meta">
+                  <span>GRAPHS &amp; POSITION</span>
+                  <span>(x, y)</span>
+                </div>
+              </div>
+
+              <span class="ml-subject-arrow" aria-hidden="true">↗</span>
+
+            </a>
+
+            <a class="ml-subject-item" href="pages/statistics.html">
+
+              <span class="ml-subject-number">04</span>
+
+              <div class="ml-subject-content">
+                <h3 class="ml-subject-title">Statistics</h3>
+                <p class="ml-subject-description">
+                  Work with data, averages and meaningful patterns.
+                </p>
+                <div class="ml-subject-meta">
+                  <span>DATA &amp; EVIDENCE</span>
+                  <span>Mean · Median · Mode</span>
+                </div>
+              </div>
+
+              <span class="ml-subject-arrow" aria-hidden="true">↗</span>
+
+            </a>
+
+            <a class="ml-subject-item" href="pages/probability.html">
+
+              <span class="ml-subject-number">05</span>
+
+              <div class="ml-subject-content">
+                <h3 class="ml-subject-title">Probability</h3>
+                <p class="ml-subject-description">
+                  Experiment with chance and compare possible outcomes.
+                </p>
+                <div class="ml-subject-meta">
+                  <span>CHANCE &amp; UNCERTAINTY</span>
+                  <span>P(E)</span>
+                </div>
+              </div>
+
+              <span class="ml-subject-arrow" aria-hidden="true">↗</span>
+
+            </a>
+
+          </div>
+
+        </section>
+
+        <!-- EDITORIAL STATEMENT -->
+
+        <section class="ml-statement">
+          <p class="ml-eyebrow">THE IDEA BEHIND MATHLAB</p>
+
+          <p class="ml-statement-text">
+            Mathematics becomes clearer when you
+            <em>experiment, observe and understand</em>
+            instead of simply memorising.
+          </p>
+        </section>
+
+        <!-- LEARNING RESOURCES -->
+
+        <section class="ml-section">
+
+          <div class="ml-section-heading">
+            <div>
+              <p class="ml-eyebrow">02 / GO FURTHER</p>
+              <h2 class="ml-section-title">
+                Test. Review. Understand.
+              </h2>
+            </div>
+          </div>
+
+          <div class="ml-resource-grid">
+
+            <article class="ml-resource-item">
+
+              <p class="ml-eyebrow">RESOURCE 01</p>
+
+              <h3 class="ml-resource-title">
+                Challenge centre
+              </h3>
+
+              <p class="ml-resource-description">
+                Test your understanding through mathematical
+                questions and interactive challenges.
+              </p>
+
+              <a class="ml-text-link"
+                href="pages/challenges.html">
+                Explore challenges ↗
+              </a>
+
+            </article>
+
+            <article class="ml-resource-item">
+
+              <p class="ml-eyebrow">RESOURCE 02</p>
+
+              <h3 class="ml-resource-title">
+                Formula library
+              </h3>
+
+              <p class="ml-resource-description">
+                Find useful formulas, definitions and mathematical
+                reminders in one organised reference.
+              </p>
+
+              <a class="ml-text-link"
+                href="pages/formulas.html">
+                Open formula library ↗
+              </a>
+
+            </article>
+
+          </div>
+
+        </section>
+
+        <!-- FOOTER -->
+
+        <footer class="ml-footer">
+
+          <div class="ml-footer-brand">
+            MathLab<span>.</span>
+          </div>
+
+          <p>
+            Made to make mathematics more understandable.
+          </p>
+
+          <div class="ml-footer-credit">
+            MADE BY ARRADHYA SHARMA
+          </div>
+
+        </footer>
+
+      </main>
+
+    </div>
+  </div>
+</body>
+</html>
