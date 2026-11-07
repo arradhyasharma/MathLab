@@ -1,365 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0b1120">
-    <title>MathLab</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MathLab is an interactive mathematics workspace for exploring Class 9 mathematics.">
+  <title>MathLab — Mathematics, explored.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <script src="js/navigation.js" defer></script>
 </head>
+
 <body>
+  <div class="site-shell">
 
-<header class="navbar">
-    <a class="logo" href="#home">Math<span>Lab</span></a>
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="MathLab home">
+        <span class="brand-mark">M<span>.</span></span>
+        <span class="brand-name">MathLab</span>
+      </a>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#labs">Math Labs</a>
-        <a href="#about">About</a>
-    </nav>
-</header>
+      <nav class="top-links" aria-label="Main navigation">
+        <a class="top-link active" href="index.html">Overview</a>
+        <a class="top-link" href="pages/algebra.html">Explore labs</a>
+        <a class="top-link" href="pages/challenges.html">Challenges</a>
+        <a class="top-link" href="pages/formulas.html">Formula library</a>
+      </nav>
 
-<main>
-    <section class="hero" id="home">
-        <p class="tagline">LEARN · EXPLORE · DISCOVER</p>
-        <h1>Mathematics, <span>Made Interactive.</span></h1>
-        <p class="hero-text">
-            Explore mathematical concepts through experiments,
-            visualisations and interactive tools.
-        </p>
-        <a href="#labs" class="primary-button">Explore MathLab</a>
-    </section>
+      <div class="top-actions">
+        <span class="edition-label">CLASS 09 · EDITION 01</span>
+        <button class="theme-toggle" id="themeToggle" type="button"
+          aria-label="Switch colour theme" title="Switch colour theme">
+          <span id="themeIcon">◐</span>
+          <span class="theme-text">Theme</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button"
+          aria-label="Open navigation" aria-expanded="false">Menu</button>
+      </div>
+    </header>
 
-    <section class="section" id="labs">
-        <div class="section-heading">
-            <p class="tagline">YOUR LEARNING SPACE</p>
-            <h2>Mathematics Labs</h2>
-            <p>Select a laboratory to start exploring.</p>
+    <div class="page-layout">
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-heading">WORKSPACE</div>
+
+        <a class="side-link selected" href="index.html">
+          <span class="side-index">00</span>
+          <span>Overview</span>
+        </a>
+
+        <div class="sidebar-heading section-gap">MATHEMATICS LABS</div>
+
+        <a class="side-link" href="pages/algebra.html">
+          <span class="side-index">01</span>
+          <span>Algebra</span>
+        </a>
+        <a class="side-link" href="pages/geometry.html">
+          <span class="side-index">02</span>
+          <span>Geometry</span>
+        </a>
+        <a class="side-link" href="pages/coordinates.html">
+          <span class="side-index">03</span>
+          <span>Coordinate geometry</span>
+        </a>
+        <a class="side-link" href="pages/statistics.html">
+          <span class="side-index">04</span>
+          <span>Statistics</span>
+        </a>
+        <a class="side-link" href="pages/probability.html">
+          <span class="side-index">05</span>
+          <span>Probability</span>
+        </a>
+
+        <div class="sidebar-heading section-gap">REFERENCE</div>
+        <a class="side-link" href="pages/challenges.html">
+          <span class="side-index">06</span>
+          <span>Challenge centre</span>
+        </a>
+        <a class="side-link" href="pages/formulas.html">
+          <span class="side-index">07</span>
+          <span>Formula library</span>
+        </a>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-note">A space to question, test and understand.</div>
+          <a class="about-link" href="pages/about.html">About this project ↗</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+
+        <div class="breadcrumb">
+          <span>WORKSPACE</span>
+          <span class="breadcrumb-slash">/</span>
+          <span>OVERVIEW</span>
+          <span class="breadcrumb-spacer"></span>
+          <span class="live-indicator"></span>
+          <span>INTERACTIVE LEARNING</span>
         </div>
 
-        <div class="lab-grid">
-            <article class="lab-card">
-                <span class="lab-number">01</span>
-                <h3>Algebra Lab</h3>
-                <p>Explore polynomials, equations and algebraic concepts.</p>
-                <button class="text-button" onclick="openLab('algebra')">
-                    Open Laboratory →
-                </button>
-            </article>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">THE INTERACTIVE MATHEMATICS LAB</p>
+            <h1>Mathematics is<br>better <em>when explored.</em></h1>
+            <p class="hero-description">
+              Move beyond memorising formulas. Experiment with numbers,
+              visualise relationships and discover the logic behind
+              Class 9 mathematics.
+            </p>
 
-            <article class="lab-card">
-                <span class="lab-number">02</span>
-                <h3>Geometry Lab</h3>
-                <p>Experiment with triangles, angles and quadrilaterals.</p>
-                <button class="text-button" onclick="openLab('geometry')">
-                    Open Laboratory →
-                </button>
-            </article>
+            <div class="hero-actions">
+              <a class="button button-primary" href="pages/algebra.html">
+                Enter the labs <span>↗</span>
+              </a>
+              <a class="text-link" href="#learning-map">View learning map <span>↓</span></a>
+            </div>
 
-            <article class="lab-card">
-                <span class="lab-number">03</span>
-                <h3>Coordinate Geometry</h3>
-                <p>Plot points and explore the Cartesian coordinate plane.</p>
-                <button class="text-button" onclick="openLab('coordinates')">
-                    Open Laboratory →
-                </button>
-            </article>
-        </div>
-    </section>
+            <div class="hero-footnote">
+              <span class="footnote-rule"></span>
+              <span>LEARN BY DOING · BUILT FOR CLASS 09</span>
+            </div>
+          </div>
 
-    <section class="workspace" id="workspace">
-        <div class="workspace-heading">
+          <div class="hero-art" aria-label="A mathematical coordinate diagram">
+            <div class="art-topline">
+              <span>FIG. 01</span>
+              <span>FUNCTION STUDY</span>
+            </div>
+
+            <svg class="math-illustration" viewBox="0 0 440 360" role="img"
+              aria-label="A plotted curve on a coordinate grid">
+              <defs>
+                <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" class="grid-line" fill="none"/>
+                </pattern>
+              </defs>
+
+              <rect x="24" y="18" width="390" height="310" fill="url(#grid)"/>
+              <line x1="45" y1="180" x2="400" y2="180" class="axis-line"/>
+              <line x1="220" y1="30" x2="220" y2="315" class="axis-line"/>
+              <path d="M 392 174 L 400 180 L 392 186" class="axis-line"/>
+              <path d="M 214 38 L 220 30 L 226 38" class="axis-line"/>
+
+              <path d="M 72 280 C 125 280, 155 248, 184 205 S 246 115, 275 100 S 340 73, 372 55"
+                class="curve-line" fill="none"/>
+
+              <circle cx="220" cy="180" r="5" class="origin-dot"/>
+              <circle cx="275" cy="100" r="6" class="point-dot"/>
+              <line x1="275" y1="100" x2="275" y2="180" class="guide-line"/>
+              <line x1="220" y1="100" x2="275" y2="100" class="guide-line"/>
+
+              <text x="405" y="198" class="diagram-label">x</text>
+              <text x="234" y="31" class="diagram-label">y</text>
+              <text x="230" y="198" class="diagram-small">0</text>
+              <text x="283" y="91" class="diagram-small">P</text>
+              <text x="285" y="196" class="diagram-small">x₁</text>
+              <text x="190" y="94" class="diagram-small">y₁</text>
+            </svg>
+
+            <div class="art-caption">
+              <span>COORDINATE PLANE</span>
+              <span class="caption-equation">y = f(x)</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="numbers-strip" aria-label="MathLab overview">
+          <div class="number-item">
+            <span class="number-value">05</span>
+            <span class="number-label">INTERACTIVE LABS</span>
+          </div>
+          <div class="number-item">
+            <span class="number-value">02</span>
+            <span class="number-label">LEARNING RESOURCES</span>
+          </div>
+          <div class="number-item">
+            <span class="number-value">09</span>
+            <span class="number-label">TARGET CLASS</span>
+          </div>
+          <div class="number-item number-note">
+            <span class="number-label">OUR APPROACH</span>
+            <span class="number-statement">Understand first. Calculate next.</span>
+          </div>
+        </section>
+
+        <section class="learning-section" id="learning-map">
+          <div class="section-heading">
             <div>
-                <p class="tagline">INTERACTIVE WORKSPACE</p>
-                <h2 id="workspace-title">Select a Mathematics Lab</h2>
-                <p id="workspace-description">
-                    Choose one of the laboratories above to begin.
-                </p>
+              <p class="eyebrow">01 / THE LEARNING MAP</p>
+              <h2>Choose a field to explore.</h2>
             </div>
-            <button class="secondary-button" onclick="closeLab()">
-                Close Lab
-            </button>
-        </div>
+            <p class="section-intro">
+              Each lab turns a mathematical idea into something
+              you can investigate yourself.
+            </p>
+          </div>
 
-        <!-- ALGEBRA LAB -->
-        <div class="lab-panel" id="algebra-panel">
-            <div class="tool-grid">
+          <div class="lab-list">
 
-                <div class="tool-card">
-                    <h3>Polynomial Explorer</h3>
-                    <p class="muted">
-                        Explore a quadratic polynomial in the form
-                        ax² + bx + c.
-                    </p>
+            <a class="lab-row" href="pages/algebra.html">
+              <div class="lab-number">01</div>
+              <div class="lab-main">
+                <h3>Algebra</h3>
+                <p>Explore expressions, polynomials and linear equations.</p>
+              </div>
+              <div class="lab-detail">
+                <span class="lab-tag">SYMBOLS &amp; RELATIONSHIPS</span>
+                <span class="lab-example">ax² + bx + c</span>
+              </div>
+              <span class="lab-arrow">↗</span>
+            </a>
 
-                    <div class="input-grid">
-                        <label>
-                            Coefficient a
-                            <input type="number" id="poly-a" value="1" step="any">
-                        </label>
-                        <label>
-                            Coefficient b
-                            <input type="number" id="poly-b" value="-5" step="any">
-                        </label>
-                        <label>
-                            Constant c
-                            <input type="number" id="poly-c" value="6" step="any">
-                        </label>
-                        <label>
-                            Value of x
-                            <input type="number" id="poly-x" value="2" step="any">
-                        </label>
-                    </div>
+            <a class="lab-row" href="pages/geometry.html">
+              <div class="lab-number">02</div>
+              <div class="lab-main">
+                <h3>Geometry</h3>
+                <p>Investigate triangles, angles and properties of shapes.</p>
+              </div>
+              <div class="lab-detail">
+                <span class="lab-tag">SHAPES &amp; SPACE</span>
+                <span class="lab-example">∠A + ∠B + ∠C</span>
+              </div>
+              <span class="lab-arrow">↗</span>
+            </a>
 
-                    <button class="primary-button" onclick="calculatePolynomial()">
-                        Analyse Polynomial
-                    </button>
+            <a class="lab-row" href="pages/coordinates.html">
+              <div class="lab-number">03</div>
+              <div class="lab-main">
+                <h3>Coordinate geometry</h3>
+                <p>Plot points and understand positions on a plane.</p>
+              </div>
+              <div class="lab-detail">
+                <span class="lab-tag">GRAPHS &amp; POSITION</span>
+                <span class="lab-example">(x, y)</span>
+              </div>
+              <span class="lab-arrow">↗</span>
+            </a>
 
-                    <div class="result-box" id="poly-result" aria-live="polite">
-                        Your polynomial results will appear here.
-                    </div>
-                </div>
+            <a class="lab-row" href="pages/statistics.html">
+              <div class="lab-number">04</div>
+              <div class="lab-main">
+                <h3>Statistics</h3>
+                <p>Work with data, averages and meaningful patterns.</p>
+              </div>
+              <div class="lab-detail">
+                <span class="lab-tag">DATA &amp; EVIDENCE</span>
+                <span class="lab-example">Mean · Median · Mode</span>
+              </div>
+              <span class="lab-arrow">↗</span>
+            </a>
 
-                <div class="tool-card">
-                    <h3>Linear Equation Solver</h3>
-                    <p class="muted">
-                        Solve an equation in the form ax + b = c.
-                    </p>
+            <a class="lab-row" href="pages/probability.html">
+              <div class="lab-number">05</div>
+              <div class="lab-main">
+                <h3>Probability</h3>
+                <p>Experiment with chance and compare expected outcomes.</p>
+              </div>
+              <div class="lab-detail">
+                <span class="lab-tag">CHANCE &amp; UNCERTAINTY</span>
+                <span class="lab-example">P(E)</span>
+              </div>
+              <span class="lab-arrow">↗</span>
+            </a>
 
-                    <div class="input-grid">
-                        <label>
-                            Coefficient a
-                            <input type="number" id="eq-a" value="2" step="any">
-                        </label>
-                        <label>
-                            Constant b
-                            <input type="number" id="eq-b" value="4" step="any">
-                        </label>
-                        <label>
-                            Right side c
-                            <input type="number" id="eq-c" value="12" step="any">
-                        </label>
-                    </div>
+          </div>
+        </section>
 
-                    <button class="primary-button" onclick="solveEquation()">
-                        Solve Equation
-                    </button>
+        <section class="lower-grid">
+          <div class="feature-panel challenge-panel">
+            <p class="eyebrow">02 / TEST YOUR UNDERSTANDING</p>
+            <h2>Think it through.<br><em>Then prove it.</em></h2>
+            <p>
+              Use short mathematical challenges to check whether
+              an idea makes sense beyond the example.
+            </p>
+            <a class="text-link" href="pages/challenges.html">Visit challenge centre ↗</a>
+            <div class="panel-index">ML / 06</div>
+          </div>
 
-                    <div class="result-box" id="equation-result" aria-live="polite">
-                        Your solution will appear here.
-                    </div>
-                </div>
-            </div>
-        </div>
+          <div class="feature-panel formula-panel">
+            <p class="eyebrow">03 / KEEP IT CLOSE</p>
+            <h2>The formula<br>reference.</h2>
+            <p>
+              A structured collection of useful formulas,
+              definitions and mathematical reminders.
+            </p>
+            <a class="text-link" href="pages/formulas.html">Open formula library ↗</a>
+            <div class="formula-decoration">a² + b²</div>
+          </div>
+        </section>
 
-        <!-- GEOMETRY LAB -->
-        <div class="lab-panel" id="geometry-panel">
-            <div class="tool-grid">
+        <footer class="site-footer">
+          <div class="footer-brand">MathLab<span>.</span></div>
+          <p>Made to make mathematics more understandable.</p>
+          <span class="footer-code">ML / CLASS 09 / V1.0</span>
+        </footer>
 
-                <div class="tool-card">
-                    <h3>Triangle Calculator</h3>
-                    <p class="muted">
-                        Calculate the perimeter and area using Heron's formula.
-                    </p>
-
-                    <div class="input-grid">
-                        <label>
-                            Side a
-                            <input type="number" id="side-a" value="3" min="0" step="any">
-                        </label>
-                        <label>
-                            Side b
-                            <input type="number" id="side-b" value="4" min="0" step="any">
-                        </label>
-                        <label>
-                            Side c
-                            <input type="number" id="side-c" value="5" min="0" step="any">
-                        </label>
-                    </div>
-
-                    <button class="primary-button" onclick="calculateTriangle()">
-                        Calculate Triangle
-                    </button>
-
-                    <div class="result-box" id="triangle-result" aria-live="polite">
-                        Triangle results will appear here.
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Angle Sum Explorer</h3>
-                    <p class="muted">
-                        Check the interior angles of a triangle.
-                    </p>
-
-                    <div class="input-grid">
-                        <label>
-                            Angle A (°)
-                            <input type="number" id="angle-a" value="60" step="any">
-                        </label>
-                        <label>
-                            Angle B (°)
-                            <input type="number" id="angle-b" value="60" step="any">
-                        </label>
-                        <label>
-                            Angle C (°)
-                            <input type="number" id="angle-c" value="60" step="any">
-                        </label>
-                    </div>
-
-                    <button class="primary-button" onclick="calculateAngles()">
-                        Check Angles
-                    </button>
-
-                    <div class="result-box" id="angle-result" aria-live="polite">
-                        Angle results will appear here.
-                    </div>
-                </div>
-
-                <div class="tool-card">
-                    <h3>Quadrilateral Explorer</h3>
-                    <p class="muted">
-                        Calculate the perimeter and check the angle sum.
-                    </p>
-
-                    <div class="input-grid">
-                        <label>
-                            Side 1
-                            <input type="number" id="quad-a" value="5" min="0" step="any">
-                        </label>
-                        <label>
-                            Side 2
-                            <input type="number" id="quad-b" value="4" min="0" step="any">
-                        </label>
-                        <label>
-                            Side 3
-                            <input type="number" id="quad-c" value="5" min="0" step="any">
-                        </label>
-                        <label>
-                            Side 4
-                            <input type="number" id="quad-d" value="4" min="0" step="any">
-                        </label>
-                    </div>
-
-                    <button class="primary-button" onclick="calculateQuadrilateral()">
-                        Calculate Perimeter
-                    </button>
-
-                    <div class="result-box" id="quad-result" aria-live="polite">
-                        Quadrilateral results will appear here.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- COORDINATE GEOMETRY LAB -->
-        <div class="lab-panel" id="coordinates-panel">
-            <div class="coordinate-layout">
-
-                <div class="tool-card">
-                    <h3>Point Plotter</h3>
-                    <p class="muted">
-                        Enter coordinates to plot a point on the Cartesian plane.
-                        The graph covers -10 to 10 on both axes.
-                    </p>
-
-                    <div class="input-grid">
-                        <label>
-                            X coordinate
-                            <input type="number" id="point-x" value="3" min="-10" max="10" step="any">
-                        </label>
-                        <label>
-                            Y coordinate
-                            <input type="number" id="point-y" value="4" min="-10" max="10" step="any">
-                        </label>
-                    </div>
-
-                    <button class="primary-button" onclick="addPoint()">
-                        Plot Point
-                    </button>
-
-                    <div class="result-box" id="point-result" aria-live="polite">
-                        Your point information will appear here.
-                    </div>
-
-                    <h4 class="subheading">Plotted Points</h4>
-                    <ul class="point-list" id="point-list">
-                        <li>No points plotted yet.</li>
-                    </ul>
-
-                    <div class="button-row">
-                        <button class="secondary-button" onclick="connectPoints()">
-                            Connect Points
-                        </button>
-                        <button class="secondary-button" onclick="clearPoints()">
-                            Clear Graph
-                        </button>
-                    </div>
-                </div>
-
-                <div class="tool-card graph-card">
-                    <h3>Cartesian Coordinate Plane</h3>
-                    <p class="muted">
-                        You can also tap on the graph to plot a point.
-                    </p>
-                    <div class="canvas-wrap">
-                        <canvas id="coordinate-canvas"
-                                aria-label="Interactive Cartesian coordinate plane"></canvas>
-                    </div>
-                    <p class="graph-note">
-                        Horizontal axis: X · Vertical axis: Y
-                    </p>
-                </div>
-
-                <div class="tool-card line-tool">
-                    <h3>Straight Line Explorer</h3>
-                    <p class="muted">
-                        Explore a straight line using y = mx + c.
-                    </p>
-
-                    <div class="input-grid">
-                        <label>
-                            Slope (m)
-                            <input type="number" id="line-m" value="2" step="any">
-                        </label>
-                        <label>
-                            Y-intercept (c)
-                            <input type="number" id="line-c" value="1" step="any">
-                        </label>
-                    </div>
-
-                    <div class="button-row">
-                        <button class="primary-button" onclick="drawLine()">
-                            Draw Line
-                        </button>
-                        <button class="secondary-button" onclick="clearLine()">
-                            Remove Line
-                        </button>
-                    </div>
-
-                    <div class="result-box" id="line-result" aria-live="polite">
-                        Enter a slope and intercept to draw a line.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="about-section" id="about">
-        <p class="tagline">ABOUT THE PROJECT</p>
-        <h2>Understanding Through Exploration</h2>
-        <p>
-            MathLab is an educational project designed to help students
-            explore mathematics using interactive tools and visual learning.
-        </p>
-        <p class="copyright">MathLab · Educational Project · Class 9</p>
-    </section>
-</main>
-
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-
-<script src="script.js"></script>
+      </main>
+    </div>
+  </div>
 </body>
 </html>
