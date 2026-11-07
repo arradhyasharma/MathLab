@@ -1,215 +1,273 @@
+"use strict";
 
-/* =================================
+/* =========================================================
    MATHLAB — GEOMETRY LAB
-================================= */
+   Experiments 01–05
+   ========================================================= */
 
 
-/* ---------- HELPERS ---------- */
+/* ---------- Shared utility functions ---------- */
 
-function geometryNumber(id) {
-  const input = document.getElementById(id);
+function getNumber(id) {
+  const element = document.getElementById(id);
 
-  if (!input || input.value.trim() === "") return null;
+  if (!element || element.value.trim() === "") {
+    return null;
+  }
 
-  const value = Number(input.value);
-  return Number.isFinite(value) ? value : null;
-}
+  const value = Number(element.value);
 
-function geometryFormat(number) {
-  if (Math.abs(number) < 0.000000001) return "0";
-  return Number(number.toFixed(6)).toString();
-}
+  if (!Number.isFinite(value)) {
+    return null;
+  }
 
-function geometryError(element, message) {
-  element.replaceChildren();
-
-  const error = document.createElement("p");
-  error.className = "result-detail";
-  error.textContent = message;
-
-  element.append(error);
-}
-
-function geometryButton(label, onClick) {
-  const button = document.createElement("button");
-  button.type = "button";
-  button.className = "step-button";
-  button.textContent = label;
-  button.addEventListener("click", onClick);
-  return button;
+  return value;
 }
 
 
-/* ---------- STEP-BY-STEP DISPLAY ---------- */
+function formatNumber(value) {
+  if (!Number.isFinite(value)) {
+    return "Not defined";
+  }
 
-function geometryShowSteps(element, title, answer, steps, note) {
-  element.replaceChildren();
+  return Number(value.toFixed(6)).toString();
+}
 
-  const heading = document.createElement("p");
-  heading.className = "result-title";
-  heading.textContent = title;
 
-  const result = document.createElement("p");
-  result.className = "result-main";
-  result.textContent = answer;
+function getElement(id) {
+  return document.getElementById(id);
+}
 
-  const list = document.createElement("ol");
-  list.className = "step-list";
 
-  const items = steps.map((step, index) => {
-    const item = document.createElement("li");
-    item.className = "step-item";
-    item.hidden = true;
+function showError(element, message) {
+  element.innerHTML = `
+    <div class="result-error">
+      <strong>Unable to calculate</strong>
+      <p>${message}</p>
+    </div>
+  `;
+}
 
-    const number = document.createElement("span");
-    number.className = "step-number";
-    number.textContent = `STEP ${index + 1}`;
 
-    const content = document.createElement("span");
-    content.className = "step-content";
-    content.textContent = step;
+function showPlaceholder(element, message) {
+  element.innerHTML = `
+    <p class="result-placeholder">${message}</p>
+  `;
+}
 
-    item.append(number, content);
-    list.append(item);
 
-    return item;
-  });
+function positiveValues(values) {
+  return values.every(value => value !== null && value > 0);
+}
 
-  const controls = document.createElement("div");
-  controls.className = "step-controls";
 
-  let shown = 0;
+function triangleIsValid(a, b, c) {
+  return (
+    a > 0 &&
+    b > 0 &&
+    c > 0 &&
+    a + b > c &&
+    a + c > b &&
+    b + c > a
+  );
+}
 
-  const next = geometryButton("Show Next Step", () => {
-    if (shown < items.length) {
-      items[shown].hidden = false;
-      shown++;
+
+/*
+  Displays a calculation in stages.
+  The user can reveal one step at a time or show all steps.
+*/
+
+function showSteps(element, heading, answer, steps, note = "") {
+  const resultId = `steps-${Math.random().toString(36).slice(2, 10)}`;
+
+  element.innerHTML = `
+    <div class="result-success">
+      <div class="result-heading">${heading}</div>
+
+      <div class="result-answer">
+        ${answer}
+      </div>
+
+      <div class="working-area" id="${resultId}">
+        <div class="working-title">STEP-BY-STEP WORKING</div>
+        <div class="working-steps"></div>
+        <div class="working-controls">
+          <button type="button" class="secondary-button show-next-step">
+            Show next step
+          </button>
+          <button type="button" class="secondary-button show-all-steps">
+            Show all steps
+          </button>
+        </div>
+      </div>
+
+      ${note ? `<p class="result-note">${note}</p>` : ""}
+    </div>
+  `;
+
+  const container = getElement(resultId);
+  const stepArea = container.querySelector(".working-steps");
+  const nextButton = container.querySelector(".show-next-step");
+  const allButton = container.querySelector(".show-all-steps");
+
+  let visibleSteps = 0;
+
+  function renderSteps() {
+    stepArea.innerHTML = steps
+      .slice(0, visibleSteps)
+      .map((step, index) => `
+        <div class="working-step">
+          <span class="step-number">${index + 1}</span>
+          <span>${step}</span>
+        </div>
+      `)
+      .join("");
+
+    nextButton.disabled = visibleSteps >= steps.length;
+    allButton.disabled = visibleSteps >= steps.length;
+
+    nextButton.textContent =
+      visibleSteps >= steps.length ? "All steps shown" : "Show next step";
+  }
+
+  nextButton.addEventListener("click", () => {
+    if (visibleSteps < steps.length) {
+      visibleSteps++;
+      renderSteps();
     }
-
-    if (shown === items.length) {
-      next.disabled = true;
-      next.textContent = "All Steps Shown";
-    }
   });
 
-  const all = geometryButton("Show All Steps", () => {
-    items.forEach(item => item.hidden = false);
-    shown = items.length;
-    next.disabled = true;
-    next.textContent = "All Steps Shown";
+  allButton.addEventListener("click", () => {
+    visibleSteps = steps.length;
+    renderSteps();
   });
 
-  controls.append(next, all);
-
-  const explanation = document.createElement("p");
-  explanation.className = "verification-note";
-  explanation.textContent = note;
-
-  element.append(heading, result, list, controls, explanation);
+  renderSteps();
 }
 
 
-/* ---------- EXPERIMENT 01: TRIANGLE ANGLES ---------- */
+/* =========================================================
+   EXPERIMENT 01 — TRIANGLE ANGLE EXPLORER
+   ========================================================= */
 
-const angleResult = document.getElementById("angleResult");
+const angleResult = getElement("angleResult");
 
-function checkTriangleAngles() {
-  const a = geometryNumber("angleA");
-  const b = geometryNumber("angleB");
-  const c = geometryNumber("angleC");
+getElement("calculateAngles").addEventListener("click", calculateAngles);
+getElement("resetAngles").addEventListener("click", resetAngles);
 
-  if ([a, b, c].some(value => value === null)) {
-    geometryError(angleResult, "Please enter all three angles.");
+
+function calculateAngles() {
+  const a = getNumber("angleA");
+  const b = getNumber("angleB");
+  const c = getNumber("angleC");
+
+  if (a === null || b === null || c === null) {
+    showError(angleResult, "Enter all three angles before calculating.");
     return;
   }
 
-  if ([a, b, c].some(value => value <= 0 || value >= 180)) {
-    geometryError(
-      angleResult,
-      "Each interior angle must be greater than 0° and less than 180°."
-    );
+  if (a <= 0 || b <= 0 || c <= 0) {
+    showError(angleResult, "Every interior angle must be greater than 0°.");
+    return;
+  }
+
+  if (a >= 180 || b >= 180 || c >= 180) {
+    showError(angleResult, "An interior angle of a triangle must be less than 180°.");
     return;
   }
 
   const total = a + b + c;
 
+  if (Math.abs(total - 180) > 0.000001) {
+    showError(
+      angleResult,
+      `The angles add up to ${formatNumber(total)}°, not 180°. These values cannot form a triangle.`
+    );
+    return;
+  }
+
+  let classification = "Acute-angled triangle";
+
+  if (a === 90 || b === 90 || c === 90) {
+    classification = "Right-angled triangle";
+  } else if (a > 90 || b > 90 || c > 90) {
+    classification = "Obtuse-angled triangle";
+  }
+
+  const isEquilateral =
+    Math.abs(a - 60) < 0.000001 &&
+    Math.abs(b - 60) < 0.000001 &&
+    Math.abs(c - 60) < 0.000001;
+
+  if (isEquilateral) {
+    classification = "Equilateral triangle";
+  }
+
   const steps = [
-    `Start with angle A = ${geometryFormat(a)}°, angle B = ${geometryFormat(b)}° and angle C = ${geometryFormat(c)}°.`,
-    "Use the triangle angle-sum property: A + B + C = 180°.",
-    `Substitute the values: ${geometryFormat(a)}° + ${geometryFormat(b)}° + ${geometryFormat(c)}°.`,
-    `Add the angles: ${geometryFormat(total)}°.`
+    `First angle = ${formatNumber(a)}°`,
+    `Second angle = ${formatNumber(b)}°`,
+    `Third angle = ${formatNumber(c)}°`,
+    `Add the angles: ${formatNumber(a)} + ${formatNumber(b)} + ${formatNumber(c)} = ${formatNumber(total)}°`,
+    `The angle sum is 180°, so the values satisfy the triangle angle-sum property.`
   ];
 
-  if (Math.abs(total - 180) < 0.000001) {
-    geometryShowSteps(
-      angleResult,
-      "VALID TRIANGLE",
-      "The three angles form a triangle.",
-      steps.concat([
-        "The sum is exactly 180°, so the angle-sum property is satisfied."
-      ]),
-      "A triangle's interior angles always add up to 180°."
-    );
-  } else {
-    geometryShowSteps(
-      angleResult,
-      "NOT A VALID TRIANGLE",
-      `Angle sum = ${geometryFormat(total)}°`,
-      steps.concat([
-        `The total differs from 180° by ${geometryFormat(Math.abs(180 - total))}°.`,
-        "These three angles cannot be the interior angles of a triangle."
-      ]),
-      "For a valid triangle, the sum must be exactly 180°."
-    );
-  }
+  showSteps(
+    angleResult,
+    "Triangle angle investigation",
+    `<strong>${classification}</strong><br>Total angle = ${formatNumber(total)}°`,
+    steps,
+    "Property verified: the sum of the three interior angles of a triangle is 180°."
+  );
 }
 
-document
-  .getElementById("checkAngles")
-  .addEventListener("click", checkTriangleAngles);
 
-document
-  .getElementById("resetAngles")
-  .addEventListener("click", () => {
-    document.getElementById("angleA").value = 60;
-    document.getElementById("angleB").value = 60;
-    document.getElementById("angleC").value = 60;
-    angleResult.textContent = "Your angle analysis will appear here.";
+function resetAngles() {
+  ["angleA", "angleB", "angleC"].forEach(id => {
+    getElement(id).value = "";
   });
 
+  showPlaceholder(angleResult, "Your angle investigation will appear here.");
+}
 
-/* ---------- EXPERIMENT 02: TRIANGLE CALCULATOR ---------- */
 
-const triangleResult =
-  document.getElementById("triangleResult");
+/* =========================================================
+   EXPERIMENT 02 — TRIANGLE AREA AND PERIMETER
+   ========================================================= */
+
+const triangleResult = getElement("triangleResult");
+
+getElement("calculateTriangle").addEventListener("click", calculateTriangle);
+getElement("resetTriangle").addEventListener("click", resetTriangle);
+
 
 function calculateTriangle() {
-  const base = geometryNumber("triangleBase");
-  const height = geometryNumber("triangleHeight");
-  const a = geometryNumber("sideA");
-  const b = geometryNumber("sideB");
-  const c = geometryNumber("sideC");
+  const base = getNumber("triangleBase");
+  const height = getNumber("triangleHeight");
 
-  if ([base, height, a, b, c].some(value => value === null)) {
-    geometryError(
+  const a = getNumber("triangleSideA");
+  const b = getNumber("triangleSideB");
+  const c = getNumber("triangleSideC");
+
+  const measurements = [base, height, a, b, c];
+
+  if (measurements.some(value => value === null)) {
+    showError(
       triangleResult,
-      "Please enter a valid number in every field."
+      "Enter the base, perpendicular height and all three side lengths."
     );
     return;
   }
 
-  if ([base, height, a, b, c].some(value => value <= 0)) {
-    geometryError(
-      triangleResult,
-      "All lengths must be greater than zero."
-    );
+  if (!positiveValues(measurements)) {
+    showError(triangleResult, "All measurements must be greater than zero.");
     return;
   }
 
-  if (a + b <= c || a + c <= b || b + c <= a) {
-    geometryError(
+  if (!triangleIsValid(a, b, c)) {
+    showError(
       triangleResult,
-      "These three side lengths cannot form a triangle. The sum of any two sides must be greater than the third side."
+      "The three side lengths do not satisfy the triangle inequality. The sum of any two sides must be greater than the third."
     );
     return;
   }
@@ -218,440 +276,574 @@ function calculateTriangle() {
   const perimeter = a + b + c;
 
   const steps = [
-    `Base = ${geometryFormat(base)} units and perpendicular height = ${geometryFormat(height)} units.`,
-    "Use the area formula: Area = ½ × base × height.",
-    `Substitute: Area = ½ × ${geometryFormat(base)} × ${geometryFormat(height)}.`,
-    `Area = ${geometryFormat(area)} square units.`,
-    `For perimeter, add all three sides: ${geometryFormat(a)} + ${geometryFormat(b)} + ${geometryFormat(c)}.`,
-    `Perimeter = ${geometryFormat(perimeter)} units.`
+    `Area formula: A = ½ × base × height`,
+    `Substitute: A = ½ × ${formatNumber(base)} × ${formatNumber(height)}`,
+    `Area = ${formatNumber(area)} square units`,
+    `Perimeter formula: P = a + b + c`,
+    `Substitute: P = ${formatNumber(a)} + ${formatNumber(b)} + ${formatNumber(c)}`,
+    `Perimeter = ${formatNumber(perimeter)} units`
   ];
 
-  geometryShowSteps(
+  showSteps(
     triangleResult,
-    "TRIANGLE CALCULATION",
-    `Area = ${geometryFormat(area)} square units | Perimeter = ${geometryFormat(perimeter)} units`,
+    "Triangle measurements",
+    `Area: <strong>${formatNumber(area)} square units</strong><br>
+     Perimeter: <strong>${formatNumber(perimeter)} units</strong>`,
     steps,
-    "The side lengths satisfy the triangle inequality. Area uses the perpendicular height, not necessarily one of the side lengths."
+    "The area calculation uses the supplied perpendicular height. The side lengths are checked separately for triangle validity."
   );
 }
 
-document
-  .getElementById("calculateTriangle")
-  .addEventListener("click", calculateTriangle);
 
-document
-  .getElementById("resetTriangle")
-  .addEventListener("click", () => {
-    document.getElementById("triangleBase").value = 10;
-    document.getElementById("triangleHeight").value = 6;
-    document.getElementById("sideA").value = 10;
-    document.getElementById("sideB").value = 8;
-    document.getElementById("sideC").value = 8;
-
-    triangleResult.textContent =
-      "Your triangle calculations will appear here.";
+function resetTriangle() {
+  [
+    "triangleBase",
+    "triangleHeight",
+    "triangleSideA",
+    "triangleSideB",
+    "triangleSideC"
+  ].forEach(id => {
+    getElement(id).value = "";
   });
 
+  showPlaceholder(triangleResult, "Triangle measurements will appear here.");
+}
 
-/* ---------- EXPERIMENT 03: HERON'S FORMULA ---------- */
 
-const heronResult = document.getElementById("heronResult");
+/* =========================================================
+   EXPERIMENT 03 — HERON'S FORMULA
+   ========================================================= */
+
+const heronResult = getElement("heronResult");
+
+getElement("calculateHeron").addEventListener("click", calculateHeron);
+getElement("resetHeron").addEventListener("click", resetHeron);
+
 
 function calculateHeron() {
-  const a = geometryNumber("heronA");
-  const b = geometryNumber("heronB");
-  const c = geometryNumber("heronC");
+  const a = getNumber("heronA");
+  const b = getNumber("heronB");
+  const c = getNumber("heronC");
 
-  if ([a, b, c].some(value => value === null || value <= 0)) {
-    geometryError(heronResult, "Enter three positive side lengths.");
+  if (a === null || b === null || c === null) {
+    showError(heronResult, "Enter all three side lengths.");
     return;
   }
 
-  if (a + b <= c || a + c <= b || b + c <= a) {
-    geometryError(
+  if (!triangleIsValid(a, b, c)) {
+    showError(
       heronResult,
-      "These sides cannot form a triangle. The sum of any two sides must be greater than the third."
+      "These side lengths cannot form a triangle. Check that the sum of any two sides is greater than the remaining side."
     );
     return;
   }
 
   const s = (a + b + c) / 2;
-  const product = s * (s - a) * (s - b) * (s - c);
-  const area = Math.sqrt(product);
 
-  const steps = [
-    `The three sides are a = ${geometryFormat(a)}, b = ${geometryFormat(b)} and c = ${geometryFormat(c)}.`,
-    "Calculate the semi-perimeter: s = (a + b + c) ÷ 2.",
-    `s = (${geometryFormat(a)} + ${geometryFormat(b)} + ${geometryFormat(c)}) ÷ 2 = ${geometryFormat(s)}.`,
-    "Apply Heron's formula: Area = √[s(s − a)(s − b)(s − c)].",
-    `Substitute: Area = √[${geometryFormat(s)} × ${geometryFormat(s - a)} × ${geometryFormat(s - b)} × ${geometryFormat(s - c)}].`,
-    `Area = ${geometryFormat(area)} square units.`
-  ];
+  const radicand =
+    s * (s - a) * (s - b) * (s - c);
 
-  geometryShowSteps(
-    heronResult,
-    "HERON'S FORMULA RESULT",
-    `Area = ${geometryFormat(area)} square units`,
-    steps,
-    "Heron's formula finds the area using only the three side lengths."
-  );
-}
-
-document
-  .getElementById("calculateHeron")
-  .addEventListener("click", calculateHeron);
-
-document
-  .getElementById("resetHeron")
-  .addEventListener("click", () => {
-    document.getElementById("heronA").value = 13;
-    document.getElementById("heronB").value = 14;
-    document.getElementById("heronC").value = 15;
-    heronResult.textContent =
-      "Your Heron's formula calculation will appear here.";
-  });
-
-
-/* ---------- EXPERIMENT 04: EQUILATERAL TRIANGLE ---------- */
-
-const equilateralResult =
-  document.getElementById("equilateralResult");
-
-function calculateEquilateral() {
-  const a = geometryNumber("equilateralSide");
-
-  if (a === null || a <= 0) {
-    geometryError(
-      equilateralResult,
-      "Enter a positive side length."
-    );
+  if (radicand <= 0 || !Number.isFinite(radicand)) {
+    showError(heronResult, "The supplied measurements do not produce a valid area.");
     return;
   }
 
-  const area = (Math.sqrt(3) / 4) * a * a;
-  const height = (Math.sqrt(3) / 2) * a;
-  const perimeter = 3 * a;
+  const area = Math.sqrt(radicand);
+  const perimeter = a + b + c;
 
   const steps = [
-    `Each side of the equilateral triangle is ${geometryFormat(a)} units.`,
-    "All three interior angles are equal: 180° ÷ 3 = 60°.",
-    "Perimeter = 3 × side length.",
-    `Perimeter = 3 × ${geometryFormat(a)} = ${geometryFormat(perimeter)} units.`,
-    "Height = (√3 ÷ 2) × side length.",
-    `Height = (√3 ÷ 2) × ${geometryFormat(a)} = ${geometryFormat(height)} units.`,
-    "Area = (√3 ÷ 4) × side length².",
-    `Area = (√3 ÷ 4) × ${geometryFormat(a)}² = ${geometryFormat(area)} square units.`
+    `Given sides: a = ${formatNumber(a)}, b = ${formatNumber(b)}, c = ${formatNumber(c)}`,
+    `Semi-perimeter formula: s = (a + b + c) / 2`,
+    `s = (${formatNumber(a)} + ${formatNumber(b)} + ${formatNumber(c)}) / 2`,
+    `s = ${formatNumber(s)}`,
+    `Heron's formula: A = √[s(s − a)(s − b)(s − c)]`,
+    `A = √[${formatNumber(s)} × ${formatNumber(s - a)} × ${formatNumber(s - b)} × ${formatNumber(s - c)}]`,
+    `A = √${formatNumber(radicand)}`,
+    `Area = ${formatNumber(area)} square units`
   ];
 
-  geometryShowSteps(
-    equilateralResult,
-    "EQUILATERAL TRIANGLE RESULT",
-    `Area = ${geometryFormat(area)} square units`,
+  showSteps(
+    heronResult,
+    "Heron's formula result",
+    `Area: <strong>${formatNumber(area)} square units</strong><br>
+     Semi-perimeter: <strong>${formatNumber(s)} units</strong><br>
+     Perimeter: <strong>${formatNumber(perimeter)} units</strong>`,
     steps,
-    `Perimeter = ${geometryFormat(perimeter)} units · Height = ${geometryFormat(height)} units · Each angle = 60°.`
+    "Heron's formula calculates a triangle's area using only its three side lengths."
   );
 }
 
-document
-  .getElementById("calculateEquilateral")
-  .addEventListener("click", calculateEquilateral);
 
-document
-  .getElementById("resetEquilateral")
-  .addEventListener("click", () => {
-    document.getElementById("equilateralSide").value = 6;
-    equilateralResult.textContent =
-      "Your equilateral triangle calculations will appear here.";
+function resetHeron() {
+  ["heronA", "heronB", "heronC"].forEach(id => {
+    getElement(id).value = "";
   });
-/* ---------- EXPERIMENT 05: QUADRILATERALS ---------- */
 
-const quadType = document.getElementById("quadType");
-const quadLength = document.getElementById("quadLength");
-const quadWidth = document.getElementById("quadWidth");
-const quadSideC = document.getElementById("quadSideC");
-const quadSideD = document.getElementById("quadSideD");
-const quadHeight = document.getElementById("quadHeight");
+  showPlaceholder(heronResult, "Heron's formula solution will appear here.");
+}
 
-const quadSecondField =
-  document.getElementById("quadSecondField");
 
-const quadThirdField =
-  document.getElementById("quadThirdField");
+/* =========================================================
+   EXPERIMENT 04 — EQUILATERAL TRIANGLE
+   ========================================================= */
 
-const quadFourthField =
-  document.getElementById("quadFourthField");
+const equilateralResult = getElement("equilateralResult");
 
-const quadHeightField =
-  document.getElementById("quadHeightField");
+getElement("calculateEquilateral").addEventListener("click", calculateEquilateral);
+getElement("resetEquilateral").addEventListener("click", resetEquilateral);
 
-const quadLengthLabel =
-  document.getElementById("quadLengthLabel");
 
-const quadWidthLabel =
-  document.getElementById("quadWidthLabel");
+function calculateEquilateral() {
+  const side = getNumber("equilateralSide");
 
-const quadSideCLabel =
-  document.getElementById("quadSideCLabel");
+  if (side === null || side <= 0) {
+    showError(equilateralResult, "Enter a side length greater than zero.");
+    return;
+  }
 
-const quadSideDLabel =
-  document.getElementById("quadSideDLabel");
+  const perimeter = 3 * side;
+  const height = (Math.sqrt(3) / 2) * side;
+  const area = (Math.sqrt(3) / 4) * side * side;
 
-const quadHeightLabel =
-  document.getElementById("quadHeightLabel");
+  const steps = [
+    `Each side has length a = ${formatNumber(side)} units.`,
+    `All three interior angles are equal.`,
+    `Each angle = 180° / 3 = 60°`,
+    `Perimeter formula: P = 3a`,
+    `P = 3 × ${formatNumber(side)} = ${formatNumber(perimeter)} units`,
+    `Height formula: h = (√3 / 2) × a`,
+    `h = (√3 / 2) × ${formatNumber(side)} = ${formatNumber(height)} units`,
+    `Area formula: A = (√3 / 4) × a²`,
+    `A = (√3 / 4) × ${formatNumber(side)}²`,
+    `Area = ${formatNumber(area)} square units`
+  ];
 
-const quadResult =
-  document.getElementById("quadResult");
+  showSteps(
+    equilateralResult,
+    "Equilateral triangle properties",
+    `Area: <strong>${formatNumber(area)} square units</strong><br>
+     Height: <strong>${formatNumber(height)} units</strong><br>
+     Perimeter: <strong>${formatNumber(perimeter)} units</strong><br>
+     Each angle: <strong>60°</strong>`,
+    steps,
+    "An equilateral triangle has three equal sides and three equal interior angles."
+  );
+}
 
+
+function resetEquilateral() {
+  getElement("equilateralSide").value = "";
+
+  showPlaceholder(
+    equilateralResult,
+    "Equilateral triangle properties will appear here."
+  );
+}
+
+
+/* =========================================================
+   EXPERIMENT 05 — QUADRILATERAL EXPLORER
+   ========================================================= */
+
+const quadType = getElement("quadType");
+const quadResult = getElement("quadrilateralResult");
+const quadHint = getElement("quadHint");
+
+const quadFields = {
+  first: getElement("quadFirstField"),
+  second: getElement("quadSecondField"),
+  third: getElement("quadThirdField"),
+  fourth: getElement("quadFourthField"),
+  height: getElement("quadHeightField")
+};
+
+
+const quadLabels = {
+  length: getElement("quadLengthLabel"),
+  width: getElement("quadWidthLabel"),
+  sideC: getElement("quadSideCLabel"),
+  sideD: getElement("quadSideDLabel"),
+  height: getElement("quadHeightLabel")
+};
+
+
+const quadInputs = [
+  "quadLength",
+  "quadWidth",
+  "quadSideC",
+  "quadSideD",
+  "quadHeight"
+];
+
+
+getElement("calculateQuadrilateral").addEventListener(
+  "click",
+  calculateQuadrilateral
+);
+
+getElement("resetQuadrilateral").addEventListener(
+  "click",
+  resetQuadrilateral
+);
+
+quadType.addEventListener("change", updateQuadrilateralFields);
+
+
+/*
+  Each field wrapper is shown or hidden as a whole.
+  This keeps the input grid from reserving empty spaces.
+*/
 
 function updateQuadrilateralFields() {
   const shape = quadType.value;
 
-  // Hide optional fields first.
-  quadSecondField.hidden = true;
-  quadThirdField.hidden = true;
-  quadFourthField.hidden = true;
-  quadHeightField.hidden = true;
+  Object.values(quadFields).forEach(field => {
+    field.hidden = true;
+  });
 
-  if (shape === "square") {
-    quadLengthLabel.textContent = "Side length";
+  switch (shape) {
+
+    case "square":
+      quadFields.first.hidden = false;
+
+      quadLabels.length.textContent = "Side length";
+
+      quadHint.textContent =
+        "Enter the length of one side. All four sides of a square are equal.";
+      break;
+
+
+    case "rectangle":
+      quadFields.first.hidden = false;
+      quadFields.second.hidden = false;
+
+      quadLabels.length.textContent = "Length";
+      quadLabels.width.textContent = "Width";
+
+      quadHint.textContent =
+        "Enter the length and width of the rectangle.";
+      break;
+
+
+    case "parallelogram":
+      quadFields.first.hidden = false;
+      quadFields.second.hidden = false;
+      quadFields.height.hidden = false;
+
+      quadLabels.length.textContent = "Base";
+      quadLabels.width.textContent = "Adjacent side";
+      quadLabels.height.textContent = "Perpendicular height";
+
+      quadHint.textContent =
+        "Enter the base, adjacent side and perpendicular height.";
+      break;
+
+
+    case "rhombus":
+      quadFields.first.hidden = false;
+      quadFields.third.hidden = false;
+      quadFields.fourth.hidden = false;
+
+      quadLabels.length.textContent = "Side length";
+      quadLabels.sideC.textContent = "Diagonal 1";
+      quadLabels.sideD.textContent = "Diagonal 2";
+
+      quadHint.textContent =
+        "Enter the side length and both diagonals. The diagonals of a rhombus bisect each other at right angles.";
+      break;
+
+
+    case "trapezium":
+      quadFields.first.hidden = false;
+      quadFields.second.hidden = false;
+      quadFields.third.hidden = false;
+      quadFields.fourth.hidden = false;
+      quadFields.height.hidden = false;
+
+      quadLabels.length.textContent = "Parallel side 1";
+      quadLabels.width.textContent = "Parallel side 2";
+      quadLabels.sideC.textContent = "Non-parallel side 1";
+      quadLabels.sideD.textContent = "Non-parallel side 2";
+      quadLabels.height.textContent = "Perpendicular height";
+
+      quadHint.textContent =
+        "Enter both parallel sides, both non-parallel sides and the perpendicular height.";
+      break;
   }
 
-  else if (shape === "rectangle") {
-    quadLengthLabel.textContent = "Length";
-    quadWidthLabel.textContent = "Width";
-    quadSecondField.hidden = false;
-  }
+  quadInputs.forEach(id => {
+    getElement(id).value = "";
+  });
 
-  else if (shape === "parallelogram") {
-    quadLengthLabel.textContent = "Base";
-    quadWidthLabel.textContent = "Adjacent side";
-    quadHeightLabel.textContent = "Perpendicular height";
-
-    quadSecondField.hidden = false;
-    quadHeightField.hidden = false;
-  }
-
-  else if (shape === "rhombus") {
-    quadLengthLabel.textContent = "Side length";
-    quadWidthLabel.textContent = "Diagonal 1";
-    quadSideCLabel.textContent = "Diagonal 2";
-
-    quadSecondField.hidden = false;
-    quadThirdField.hidden = false;
-  }
-
-  else if (shape === "trapezium") {
-    quadLengthLabel.textContent = "Parallel side 1";
-    quadWidthLabel.textContent = "Parallel side 2";
-    quadSideCLabel.textContent = "Side 3";
-    quadSideDLabel.textContent = "Side 4";
-    quadHeightLabel.textContent = "Perpendicular height";
-
-    quadSecondField.hidden = false;
-    quadThirdField.hidden = false;
-    quadFourthField.hidden = false;
-    quadHeightField.hidden = false;
-  }
-
-  quadResult.textContent =
-    "Enter the dimensions and calculate the result.";
+  showPlaceholder(
+    quadResult,
+    "Enter the required measurements and calculate the shape."
+  );
 }
 
 
 function calculateQuadrilateral() {
   const shape = quadType.value;
-  const first = geometryNumber("quadLength");
 
-  if (first === null || first <= 0) {
-    geometryError(quadResult, "Enter a positive first dimension.");
-    return;
-  }
+  const first = getNumber("quadLength");
+  const second = getNumber("quadWidth");
+  const third = getNumber("quadSideC");
+  const fourth = getNumber("quadSideD");
+  const height = getNumber("quadHeight");
 
   let area = 0;
   let perimeter = 0;
   let steps = [];
-  let shapeName = "";
+  let heading = "";
+  let note = "";
 
-  if (shape === "square") {
-    shapeName = "Square";
+  switch (shape) {
 
-    area = first * first;
-    perimeter = 4 * first;
+    /* ---------- SQUARE ---------- */
 
-    steps = [
-      `Side = ${geometryFormat(first)} units.`,
-      "Area = side × side.",
-      `Area = ${geometryFormat(first)} × ${geometryFormat(first)} = ${geometryFormat(area)} square units.`,
-      "Perimeter = 4 × side.",
-      `Perimeter = 4 × ${geometryFormat(first)} = ${geometryFormat(perimeter)} units.`
-    ];
+    case "square": {
+      if (first === null || first <= 0) {
+        showError(quadResult, "Enter a valid side length greater than zero.");
+        return;
+      }
+
+      const side = first;
+
+      area = side * side;
+      perimeter = 4 * side;
+
+      heading = "Square calculation";
+
+      steps = [
+        `Side length = ${formatNumber(side)} units.`,
+        `Area formula: A = side × side`,
+        `A = ${formatNumber(side)} × ${formatNumber(side)}`,
+        `Area = ${formatNumber(area)} square units`,
+        `Perimeter formula: P = 4 × side`,
+        `P = 4 × ${formatNumber(side)}`,
+        `Perimeter = ${formatNumber(perimeter)} units`
+      ];
+
+      note = "A square has four equal sides and four right angles.";
+      break;
+    }
+
+
+    /* ---------- RECTANGLE ---------- */
+
+    case "rectangle": {
+      if (!positiveValues([first, second])) {
+        showError(quadResult, "Enter a valid length and width.");
+        return;
+      }
+
+      const length = first;
+      const width = second;
+
+      area = length * width;
+      perimeter = 2 * (length + width);
+
+      heading = "Rectangle calculation";
+
+      steps = [
+        `Length = ${formatNumber(length)} units.`,
+        `Width = ${formatNumber(width)} units.`,
+        `Area formula: A = length × width`,
+        `A = ${formatNumber(length)} × ${formatNumber(width)}`,
+        `Area = ${formatNumber(area)} square units`,
+        `Perimeter formula: P = 2(length + width)`,
+        `P = 2(${formatNumber(length)} + ${formatNumber(width)})`,
+        `Perimeter = ${formatNumber(perimeter)} units`
+      ];
+
+      note = "Opposite sides of a rectangle are equal and all four angles are right angles.";
+      break;
+    }
+
+
+    /* ---------- PARALLELOGRAM ---------- */
+
+    case "parallelogram": {
+      if (!positiveValues([first, second, height])) {
+        showError(
+          quadResult,
+          "Enter a positive base, adjacent side and perpendicular height."
+        );
+        return;
+      }
+
+      const base = first;
+      const side = second;
+
+      if (height > side) {
+        showError(
+          quadResult,
+          "The perpendicular height cannot be greater than the adjacent side."
+        );
+        return;
+      }
+
+      area = base * height;
+      perimeter = 2 * (base + side);
+
+      heading = "Parallelogram calculation";
+
+      steps = [
+        `Base = ${formatNumber(base)} units.`,
+        `Adjacent side = ${formatNumber(side)} units.`,
+        `Perpendicular height = ${formatNumber(height)} units.`,
+        `Area formula: A = base × height`,
+        `A = ${formatNumber(base)} × ${formatNumber(height)}`,
+        `Area = ${formatNumber(area)} square units`,
+        `Perimeter formula: P = 2(base + side)`,
+        `P = 2(${formatNumber(base)} + ${formatNumber(side)})`,
+        `Perimeter = ${formatNumber(perimeter)} units`
+      ];
+
+      note = "The height must be perpendicular to the base; it is not necessarily equal to the slanting side.";
+      break;
+    }
+
+
+    /* ---------- RHOMBUS ---------- */
+
+    case "rhombus": {
+      if (!positiveValues([first, third, fourth])) {
+        showError(
+          quadResult,
+          "Enter a positive side length and two positive diagonal lengths."
+        );
+        return;
+      }
+
+      const side = first;
+      const diagonal1 = third;
+      const diagonal2 = fourth;
+
+      /*
+        In a rhombus, diagonals bisect each other at right angles.
+        Each half-diagonal and one side form a right triangle.
+      */
+
+      const expectedSideSquared =
+        Math.pow(diagonal1 / 2, 2) +
+        Math.pow(diagonal2 / 2, 2);
+
+      const actualSideSquared = side * side;
+
+      const difference = Math.abs(
+        actualSideSquared - expectedSideSquared
+      );
+
+      const tolerance = Math.max(
+        0.000001,
+        expectedSideSquared * 0.000001
+      );
+
+      if (difference > tolerance) {
+        showError(
+          quadResult,
+          "These measurements are inconsistent. For a rhombus, side² must equal (diagonal 1 ÷ 2)² + (diagonal 2 ÷ 2)². Check your values."
+        );
+        return;
+      }
+
+      area = 0.5 * diagonal1 * diagonal2;
+      perimeter = 4 * side;
+
+      heading = "Rhombus calculation";
+
+      steps = [
+        `Side length = ${formatNumber(side)} units.`,
+        `First diagonal = ${formatNumber(diagonal1)} units.`,
+        `Second diagonal = ${formatNumber(diagonal2)} units.`,
+        `Area formula: A = ½ × d₁ × d₂`,
+        `A = ½ × ${formatNumber(diagonal1)} × ${formatNumber(diagonal2)}`,
+        `Area = ${formatNumber(area)} square units`,
+        `Perimeter formula: P = 4 × side`,
+        `P = 4 × ${formatNumber(side)}`,
+        `Perimeter = ${formatNumber(perimeter)} units`
+      ];
+
+      note = "A rhombus has four equal sides. Its diagonals bisect each other at right angles.";
+      break;
+    }
+
+
+    /* ---------- TRAPEZIUM ---------- */
+
+    case "trapezium": {
+      if (!positiveValues([first, second, third, fourth, height])) {
+        showError(
+          quadResult,
+          "Enter all five measurements. Every measurement must be greater than zero."
+        );
+         return;
+      }
+
+      const parallel1 = first;
+      const parallel2 = second;
+      const side1 = third;
+      const side2 = fourth;
+
+      if (height > side1 || height > side2) {
+        showError(
+          quadResult,
+          "The perpendicular height cannot be greater than either non-parallel side."
+        );
+        return;
+      }
+
+      area = 0.5 * (parallel1 + parallel2) * height;
+      perimeter = parallel1 + parallel2 + side1 + side2;
+
+      heading = "Trapezium calculation";
+
+      steps = [
+        `First parallel side = ${formatNumber(parallel1)} units.`,
+        `Second parallel side = ${formatNumber(parallel2)} units.`,
+        `First non-parallel side = ${formatNumber(side1)} units.`,
+        `Second non-parallel side = ${formatNumber(side2)} units.`,
+        `Perpendicular height = ${formatNumber(height)} units.`,
+        `Area formula: A = ½ × (a + b) × h`,
+        `A = ½ × (${formatNumber(parallel1)} + ${formatNumber(parallel2)}) × ${formatNumber(height)}`,
+        `Area = ${formatNumber(area)} square units`,
+        `Perimeter formula: P = a + b + c + d`,
+        `P = ${formatNumber(parallel1)} + ${formatNumber(parallel2)} + ${formatNumber(side1)} + ${formatNumber(side2)}`,
+        `Perimeter = ${formatNumber(perimeter)} units`
+      ];
+
+      note = "The two bases are parallel. The height is the perpendicular distance between them. Check that the measurements describe a possible trapezium.";
+      break;
+    }
+        default:
+      showError(quadResult, "Select a valid quadrilateral.");
+      return;
   }
 
-  else if (shape === "rectangle") {
-    const second = geometryNumber("quadWidth");
 
-    if (second === null || second <= 0) {
-      geometryError(quadResult, "Enter a positive width.");
-      return;
-    }
-
-    shapeName = "Rectangle";
-    area = first * second;
-    perimeter = 2 * (first + second);
-
-    steps = [
-      `Length = ${geometryFormat(first)} units and width = ${geometryFormat(second)} units.`,
-      "Area = length × width.",
-      `Area = ${geometryFormat(first)} × ${geometryFormat(second)} = ${geometryFormat(area)} square units.`,
-      "Perimeter = 2 × (length + width).",
-      `Perimeter = 2 × (${geometryFormat(first)} + ${geometryFormat(second)}) = ${geometryFormat(perimeter)} units.`
-    ];
-  }
-
-  else if (shape === "parallelogram") {
-    const second = geometryNumber("quadWidth");
-    const height = geometryNumber("quadHeight");
-
-    if ([second, height].some(value => value === null || value <= 0)) {
-      geometryError(
-        quadResult,
-        "Enter positive values for the adjacent side and perpendicular height."
-      );
-      return;
-    }
-
-    if (height > second) {
-      geometryError(
-        quadResult,
-        "The perpendicular height cannot exceed the adjacent side length."
-      );
-      return;
-    }
-
-    shapeName = "Parallelogram";
-    area = first * height;
-    perimeter = 2 * (first + second);
-
-    steps = [
-      `Base = ${geometryFormat(first)}, adjacent side = ${geometryFormat(second)} and height = ${geometryFormat(height)} units.`,
-      "Area = base × perpendicular height.",
-      `Area = ${geometryFormat(first)} × ${geometryFormat(height)} = ${geometryFormat(area)} square units.`,
-      "Perimeter = 2 × (base + adjacent side).",
-      `Perimeter = 2 × (${geometryFormat(first)} + ${geometryFormat(second)}) = ${geometryFormat(perimeter)} units.`
-    ];
-  }
-
-  else if (shape === "rhombus") {
-    const d1 = geometryNumber("quadWidth");
-    const d2 = geometryNumber("quadSideC");
-
-    if ([d1, d2].some(value => value === null || value <= 0)) {
-      geometryError(
-        quadResult,
-        "Enter positive values for both diagonals."
-      );
-      return;
-    }
-
-    // In a rhombus, diagonals bisect each other at right angles.
-    // Therefore, side² = (d1/2)² + (d2/2)².
-    const expectedSide = Math.sqrt(
-      (d1 / 2) ** 2 + (d2 / 2) ** 2
-    );
-
-    if (Math.abs(first - expectedSide) > 0.00001 * Math.max(1, expectedSide)) {
-      geometryError(
-        quadResult,
-        `These measurements are inconsistent. For diagonals ${geometryFormat(d1)} and ${geometryFormat(d2)}, the side should be approximately ${geometryFormat(expectedSide)} units.`
-      );
-      return;
-    }
-
-    shapeName = "Rhombus";
-    area = 0.5 * d1 * d2;
-    perimeter = 4 * first;
-
-    steps = [
-      `Side = ${geometryFormat(first)} units.`,
-      `First diagonal = ${geometryFormat(d1)} units and second diagonal = ${geometryFormat(d2)} units.`,
-      "Area = ½ × diagonal 1 × diagonal 2.",
-      `Area = ½ × ${geometryFormat(d1)} × ${geometryFormat(d2)} = ${geometryFormat(area)} square units.`,
-      "Perimeter = 4 × side.",
-      `Perimeter = 4 × ${geometryFormat(first)} = ${geometryFormat(perimeter)} units.`
-    ];
-  }
-
-  else if (shape === "trapezium") {
-    const second = geometryNumber("quadWidth");
-    const third = geometryNumber("quadSideC");
-    const fourth = geometryNumber("quadSideD");
-    const height = geometryNumber("quadHeight");
-
-    if ([second, third, fourth, height].some(
-      value => value === null || value <= 0
-    )) {
-      geometryError(
-        quadResult,
-        "Enter positive values for both parallel sides, the other two sides and the height."
-      );
-      return;
-    }
-
-    if (height > third || height > fourth) {
-      geometryError(
-        quadResult,
-        "The perpendicular height cannot be greater than either of the non-parallel side lengths."
-      );
-      return;
-    }
-
-    shapeName = "Trapezium";
-    area = 0.5 * (first + second) * height;
-    perimeter = first + second + third + fourth;
-
-    steps = [
-      `Parallel sides = ${geometryFormat(first)} and ${geometryFormat(second)} units.`,
-      `Other sides = ${geometryFormat(third)} and ${geometryFormat(fourth)} units.`,
-      `Perpendicular height = ${geometryFormat(height)} units.`,
-      "Area = ½ × (sum of parallel sides) × height.",
-      `Area = ½ × (${geometryFormat(first)} + ${geometryFormat(second)}) × ${geometryFormat(height)} = ${geometryFormat(area)} square units.`,
-      "Perimeter = sum of all four sides.",
-      `Perimeter = ${geometryFormat(first)} + ${geometryFormat(second)} + ${geometryFormat(third)} + ${geometryFormat(fourth)} = ${geometryFormat(perimeter)} units.`
-    ];
-  }
-
-  geometryShowSteps(
+  showSteps(
     quadResult,
-    `${shapeName.toUpperCase()} CALCULATION`,
-    `Area = ${geometryFormat(area)} square units | Perimeter = ${geometryFormat(perimeter)} units`,
+    heading,
+    `Area: <strong>${formatNumber(area)} square units</strong><br>
+     Perimeter: <strong>${formatNumber(perimeter)} units</strong>`,
     steps,
-    `The formulas for a ${shapeName.toLowerCase()} have been applied. Check that the entered dimensions describe a possible shape.`
+    note
   );
 }
 
 
-document
-  .getElementById("calculateQuadrilateral")
-  .addEventListener("click", calculateQuadrilateral);
-
-
-document
-  .getElementById("resetQuadrilateral")
-  .addEventListener("click", () => {
-    quadType.value = "square";
-    quadLength.value = 5;
-    quadWidth.value = 3;
-    quadSideC.value = 5;
-    quadSideD.value = 5;
-    quadHeight.value = 4;
-
-    updateQuadrilateralFields();
-
-    quadResult.textContent =
-      "Your shape calculations will appear here.";
+function resetQuadrilateral() {
+  quadInputs.forEach(id => {
+    getElement(id).value = "";
   });
 
-/* ---------- INITIAL SETUP ---------- */
+  showPlaceholder(
+    quadResult,
+    "Enter the required measurements and calculate the shape."
+  );
+}
 
+
+/* ---------- Initial page setup ---------- */
 updateQuadrilateralFields();
-                   
