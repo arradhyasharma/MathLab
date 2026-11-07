@@ -560,3 +560,28 @@ html[data-theme="dark"] .action-button {
     flex: 1 1 100%;
   }
 }
+/* Geometry Lab: hide complete quadrilateral fields */
+#quadrilateralInputs [hidden] {
+  display: none !important;
+}
+
+#quadrilateralInputs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+#quadrilateralInputs .field {
+  min-width: 0;
+}
+
+#quadrilateralInputs input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  #quadrilateralInputs {
+    grid-template-columns: 1fr;
+  }
+}
