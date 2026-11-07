@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore polynomials and linear equations in the MathLab Algebra Lab.">
+  <title>Algebra Lab — MathLab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/labs.css">
+
+  <script src="../js/navigation.js" defer></script>
+  <script src="../js/algebra.js" defer></script>
+</head>
+
+<body>
+  <div class="site-shell">
+
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">M<span>.</span></span>
+        <span class="brand-name">MathLab</span>
+      </a>
+
+      <nav class="top-links" aria-label="Main navigation">
+        <a class="top-link" href="../index.html">Overview</a>
+        <a class="top-link active" href="algebra.html">Explore labs</a>
+        <a class="top-link" href="challenges.html">Challenges</a>
+        <a class="top-link" href="formulas.html">Formula library</a>
+      </nav>
+
+      <div class="top-actions">
+        <span class="edition-label">CLASS 09 </span>
+        <button class="theme-toggle" id="themeToggle" type="button"
+          aria-label="Switch colour theme">
+          <span id="themeIcon">◐</span>
+          <span class="theme-text">Theme</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button"
+          aria-label="Open navigation" aria-expanded="false">Menu</button>
+      </div>
+    </header>
+
+    <div class="page-layout">
+
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-heading">WORKSPACE</div>
+
+        <a class="side-link" href="../index.html">
+          <span class="side-index">00</span>
+          <span>Overview</span>
+        </a>
+
+        <div class="sidebar-heading section-gap">MATHEMATICS LABS</div>
+
+        <a class="side-link selected" href="algebra.html">
+          <span class="side-index">01</span>
+          <span>Algebra</span>
+        </a>
+        <a class="side-link" href="geometry.html">
+          <span class="side-index">02</span>
+          <span>Geometry</span>
+        </a>
+        <a class="side-link" href="coordinates.html">
+          <span class="side-index">03</span>
+          <span>Coordinate geometry</span>
+        </a>
+        <a class="side-link" href="statistics.html">
+          <span class="side-index">04</span>
+          <span>Statistics</span>
+        </a>
+        <a class="side-link" href="probability.html">
+          <span class="side-index">05</span>
+          <span>Probability</span>
+        </a>
+
+        <div class="sidebar-heading section-gap">REFERENCE</div>
+
+        <a class="side-link" href="challenges.html">
+          <span class="side-index">06</span>
+          <span>Challenge centre</span>
+        </a>
+        <a class="side-link" href="formulas.html">
+          <span class="side-index">07</span>
+          <span>Formula library</span>
+        </a>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-note">
+            Mathematics begins with asking why.
+          </div>
+          <a class="about-link" href="about.html">About this project ↗</a>
+        </div>
+      </aside>
+
+      <main class="main-content">
+
+        <div class="breadcrumb">
+          <a href="../index.html">WORKSPACE</a>
+          <span>/</span>
+          <span>MATHEMATICS LABS</span>
+          <span>/</span>
+          <span>ALGEBRA</span>
+          <span class="breadcrumb-spacer"></span>
+          <span>LAB 01</span>
+        </div>
+
+        <section class="lab-intro">
+          <p class="eyebrow">MATHEMATICS LAB · 01</p>
+
+          <h1>Algebra<span class="heading-period">.</span></h1>
+
+          <p class="lab-lead">
+            Expressions are more than symbols. Change a value,
+            observe what happens and uncover the relationships
+            hidden inside an equation.
+          </p>
+
+          <div class="topic-meta">
+            <span>CLASS 09</span>
+            <span>POLYNOMIALS</span>
+            <span>LINEAR EQUATIONS</span>
+          </div>
+        </section>
+
+        <section class="concept-section">
+          <div class="concept-heading">
+            <div>
+              <p class="eyebrow">01 / CONCEPT</p>
+              <h2>What is a polynomial?</h2>
+            </div>
+            <span class="concept-number">A—01</span>
+          </div>
+
+          <div class="concept-layout">
+            <div class="concept-text">
+              <p>
+                A polynomial is an algebraic expression made up of
+                variables and coefficients, where the powers of
+                variables are non-negative whole numbers.
+              </p>
+
+              <p>
+                For example, the expression below is a polynomial
+                in one variable.
+              </p>
+
+              <div class="definition-note">
+                <strong>Remember</strong>
+                The highest power of the variable with a non-zero
+                coefficient determines the degree of a polynomial.
+              </div>
+            </div>
+
+            <div class="equation-display">
+              <span class="equation-label">GENERAL FORM</span>
+              <div class="big-equation">ax² + bx + c</div>
+              <span class="equation-caption">
+                A polynomial of degree at most 2
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="tool-heading">
+            <div>
+              <p class="eyebrow">02 / INTERACTIVE EXPERIMENT</p>
+              <h2>Polynomial explorer</h2>
+            </div>
+            <span class="tool-status">LIVE CALCULATION</span>
+          </div>
+
+          <p class="tool-description">
+            Change the coefficients and choose a value of x.
+            See how the polynomial responds.
+          </p>
+
+          <div class="calculator-card">
+
+            <div class="calculator-top">
+              <span>EXPERIMENT 01</span>
+              <span>f(x) = ax² + bx + c</span>
+            </div>
+
+            <div class="input-grid">
+              <div class="field">
+                <label for="coefficientA">Coefficient a</label>
+                <input id="coefficientA" type="number" value="1" step="any">
+              </div>
+
+              <div class="field">
+                <label for="coefficientB">Coefficient b</label>
+                <input id="coefficientB" type="number" value="-5" step="any">
+              </div>
+
+              <div class="field">
+                <label for="coefficientC">Constant c</label>
+                <input id="coefficientC" type="number" value="6" step="any">
+              </div>
+
+              <div class="field">
+                <label for="inputX">Value of x</label>
+                <input id="inputX" type="number" value="2" step="any">
+              </div>
+            </div>
+
+            <div class="equation-preview">
+              <span class="preview-label">YOUR POLYNOMIAL</span>
+              <div id="polynomialPreview" class="preview-equation">
+                f(x) = x² − 5x + 6
+              </div>
+            </div>
+
+            <div class="calculator-actions">
+              <button class="action-button" id="calculatePolynomial">
+                Calculate value ↗
+              </button>
+              <button class="reset-button" id="resetPolynomial">
+                Reset
+              </button>
+            </div>
+
+            <div class="result-area" id="polynomialResult"
+              aria-live="polite">
+              <span class="result-placeholder">
+                Your calculation will appear here.
+              </span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="tool-section">
+          <div class="tool-heading">
+            <div>
+              <p class="eyebrow">03 / SOLVE & UNDERSTAND</p>
+              <h2>Linear equation solver</h2>
+            </div>
+            <span class="tool-status">STEP-BY-STEP</span>
+          </div>
+
+          <p class="tool-description">
+            An equation states that two expressions are equal.
+            Find the value of x that makes the statement true.
+          </p>
+
+          <div class="calculator-card">
+
+            <div class="calculator-top">
+              <span>EXPERIMENT 02</span>
+              <span>ax + b = c</span>
+            </div>
+
+            <div class="equation-input-layout">
+              <div class="field">
+                <label for="equationA">Coefficient a</label>
+                <input id="equationA" type="number" value="3" step="any">
+              </div>
+
+              <div class="equation-symbol">x +</div>
+
+              <div class="field">
+                <label for="equationB">Constant b</label>
+                <input id="equationB" type="number" value="5" step="any">
+              </div>
+
+              <div class="equation-symbol">=</div>
+
+              <div class="field">
+                <label for="equationC">Right side c</label>
+                <input id="equationC" type="number" value="20" step="any">
+              </div>
+            </div>
+
+            <div class="calculator-actions">
+              <button class="action-button" id="solveEquation">
+                Solve equation ↗
+              </button>
+              <button class="reset-button" id="resetEquation">
+                Reset
+              </button>
+            </div>
+
+            <div class="result-area" id="equationResult"
+              aria-live="polite">
+              <span class="result-placeholder">
+                The solution and working will appear here.
+              </span>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="learning-note">
+          <div class="note-symbol">∑</div>
+          <div>
+            <p class="eyebrow">A MATHEMATICAL REMINDER</p>
+            <h3>Don't just find the answer.</h3>
+            <p>
+              Try changing one number at a time. Notice which parts
+              of the expression change and which remain constant.
+              That is how mathematical relationships become clear.
+            </p>
+          </div>
+        </section>
+
+        <footer class="site-footer">
+          <div class="footer-brand">MathLab<span>.</span></div>
+          <p>Algebra Lab · Experiment 01–02</p>
+          <a class="footer-code" href="../index.html">BACK TO OVERVIEW ↑</a>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+</body>
+          </html>
