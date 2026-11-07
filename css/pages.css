@@ -1,0 +1,565 @@
+.ml-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 64px;
+  padding: 76px 0 84px;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-hero-copy {
+  max-width: 680px;
+}
+
+.ml-hero-title {
+  max-width: 650px;
+  margin: 18px 0 22px;
+  color: var(--ml-text);
+  font-family: var(--ml-font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.ml-hero-title em {
+  color: var(--ml-primary);
+  font-weight: 400;
+}
+
+.ml-hero-description {
+  max-width: 540px;
+  color: var(--ml-text-muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.ml-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.ml-hero-note {
+  margin-top: 22px;
+  color: var(--ml-text-subtle);
+  font-family: var(--ml-font-mono);
+  font-size: 0.75rem;
+}
+
+/* -------------------------
+   HERO SCIENTIFIC VISUAL
+------------------------- */
+
+.ml-hero-visual {
+  position: relative;
+  min-height: 390px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--ml-border);
+  background-color: var(--ml-bg-secondary);
+}
+
+.ml-hero-art {
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+}
+
+.ml-hero-visual svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ml-visual-caption {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  color: var(--ml-text-muted);
+  font-family: var(--ml-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+}
+
+/* -------------------------
+   PAGE INTRODUCTION
+------------------------- */
+
+.ml-page-hero {
+  padding: 64px 0 48px;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-page-hero .ml-page-title {
+  max-width: 850px;
+}
+
+.ml-page-hero .ml-page-description {
+  max-width: 680px;
+  margin-top: 18px;
+}
+
+/* -------------------------
+   SUBJECT INDEX
+------------------------- */
+
+.ml-subject-list {
+  margin-top: 28px;
+  border-top: 1px solid var(--ml-border);
+}
+
+.ml-subject-item {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  align-items: center;
+  gap: 22px;
+  padding: 24px 10px;
+  border-bottom: 1px solid var(--ml-border);
+  color: var(--ml-text);
+  text-decoration: none;
+  transition:
+    background-color var(--ml-transition),
+    padding var(--ml-transition);
+}
+
+.ml-subject-item:hover {
+  padding-left: 18px;
+  background: var(--ml-bg-secondary);
+}
+
+.ml-subject-number {
+  color: var(--ml-text-subtle);
+  font-family: var(--ml-font-mono);
+  font-size: 0.8rem;
+}
+
+.ml-subject-content {
+  min-width: 0;
+}
+
+.ml-subject-title {
+  margin: 0;
+  font-family: var(--ml-font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.ml-subject-description {
+  margin: 7px 0 0;
+  color: var(--ml-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.ml-subject-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  color: var(--ml-text-subtle);
+  font-family: var(--ml-font-mono);
+  font-size: 0.7rem;
+}
+
+.ml-subject-arrow {
+  color: var(--ml-primary);
+  font-size: 1.3rem;
+  transition: transform var(--ml-transition);
+}
+
+.ml-subject-item:hover .ml-subject-arrow {
+  transform: translateX(5px);
+}
+
+/* -------------------------
+   EDITORIAL CONTENT
+------------------------- */
+
+.ml-editorial-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.ml-editorial-aside {
+  position: sticky;
+  top: 110px;
+}
+
+.ml-editorial-heading {
+  margin: 0 0 18px;
+  font-family: var(--ml-font-display);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  font-weight: 500;
+  line-height: 1.15;
+}
+
+.ml-editorial-copy {
+  color: var(--ml-text-muted);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.ml-editorial-copy p + p {
+  margin-top: 18px;
+}
+
+.ml-editorial-copy strong {
+  color: var(--ml-text);
+  font-weight: 600;
+}
+
+/* -------------------------
+   FEATURE ROWS
+------------------------- */
+
+.ml-feature-list {
+  border-top: 1px solid var(--ml-border);
+}
+
+.ml-feature-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-feature-index {
+  color: var(--ml-primary);
+  font-family: var(--ml-font-mono);
+  font-size: 0.8rem;
+}
+
+.ml-feature-title {
+  margin: 0 0 8px;
+  font-family: var(--ml-font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.ml-feature-description {
+  max-width: 650px;
+  margin: 0;
+  color: var(--ml-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+/* -------------------------
+   STATEMENT / QUOTE SECTION
+------------------------- */
+
+.ml-statement {
+  padding: 54px 0;
+  border-top: 1px solid var(--ml-border);
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-statement-text {
+  max-width: 900px;
+  margin: 0;
+  color: var(--ml-text);
+  font-family: var(--ml-font-display);
+  font-size: clamp(1.9rem, 4vw, 3.3rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+
+.ml-statement-text em {
+  color: var(--ml-primary);
+}
+
+/* -------------------------
+   TECHNOLOGY LIST
+------------------------- */
+
+.ml-tech-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--ml-border);
+  border-left: 1px solid var(--ml-border);
+}
+
+.ml-tech-item {
+  padding: 22px;
+  border-right: 1px solid var(--ml-border);
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-tech-name {
+  margin: 0 0 8px;
+  font-family: var(--ml-font-mono);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ml-tech-description {
+  margin: 0;
+  color: var(--ml-text-muted);
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+
+/* -------------------------
+   FORMULA LIBRARY
+------------------------- */
+
+.ml-formula-list {
+  border-top: 1px solid var(--ml-border);
+}
+
+.ml-formula-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 4px;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-formula-name {
+  margin: 0 0 7px;
+  font-family: var(--ml-font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.ml-formula-topic {
+  color: var(--ml-text-muted);
+  font-size: 0.82rem;
+}
+
+.ml-formula-expression {
+  padding: 12px 16px;
+  border: 1px solid var(--ml-border);
+  background: var(--ml-bg-secondary);
+  color: var(--ml-primary);
+  font-family: var(--ml-font-mono);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* -------------------------
+   CHALLENGE / QUIZ PAGES
+------------------------- */
+
+.ml-challenge-intro {
+  max-width: 760px;
+}
+
+.ml-challenge-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.ml-challenge-question {
+  margin: 28px 0 18px;
+  font-family: var(--ml-font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.ml-challenge-options {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.ml-challenge-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--ml-border);
+  background: var(--ml-bg);
+  color: var(--ml-text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--ml-transition),
+    background-color var(--ml-transition);
+}
+
+.ml-challenge-option:hover {
+  border-color: var(--ml-primary);
+  background: var(--ml-bg-secondary);
+}
+
+.ml-challenge-option.is-selected {
+  border-color: var(--ml-primary);
+  background: var(--ml-primary-soft);
+}
+
+.ml-challenge-option.is-correct {
+  border-color: var(--ml-success);
+  background: var(--ml-success-soft);
+}
+
+.ml-challenge-option.is-incorrect {
+  border-color: var(--ml-error);
+  background: var(--ml-error-soft);
+}
+
+.ml-challenge-option:disabled {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.ml-option-letter {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
+  border: 1px solid var(--ml-border);
+  border-radius: 50%;
+  font-family: var(--ml-font-mono);
+  font-size: 0.75rem;
+}
+
+.ml-challenge-feedback {
+  margin-top: 20px;
+  padding: 18px;
+  border-left: 3px solid var(--ml-primary);
+  background: var(--ml-bg-secondary);
+  color: var(--ml-text-muted);
+  line-height: 1.7;
+}
+
+.ml-challenge-progress {
+  height: 5px;
+  margin: 20px 0;
+  overflow: hidden;
+  background: var(--ml-border);
+}
+
+.ml-challenge-progress-fill {
+  height: 100%;
+  width: 0;
+  background: var(--ml-primary);
+  transition: width 250ms ease;
+}
+
+/* -------------------------
+   ABOUT / OBJECTIVES
+------------------------- */
+
+.ml-objective-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--ml-border);
+}
+
+.ml-objective-item {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--ml-border);
+}
+
+.ml-objective-marker {
+  color: var(--ml-primary);
+  font-family: var(--ml-font-mono);
+  font-size: 0.8rem;
+}
+
+.ml-objective-text {
+  margin: 0;
+  color: var(--ml-text-muted);
+  line-height: 1.7;
+}
+
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+
+@media (max-width: 900px) {
+  .ml-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 56px 0;
+  }
+
+  .ml-hero-visual {
+    min-height: 300px;
+  }
+
+  .ml-editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .ml-editorial-aside {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .ml-hero {
+    padding: 42px 0;
+    gap: 30px;
+  }
+
+  .ml-hero-title {
+    font-size: clamp(2.7rem, 12vw, 4rem);
+  }
+
+  .ml-hero-description {
+    font-size: 0.95rem;
+  }
+
+  .ml-hero-visual {
+    min-height: 240px;
+  }
+
+  .ml-page-hero {
+    padding: 42px 0 32px;
+  }
+
+  .ml-subject-item {
+    grid-template-columns: 34px 1fr auto;
+    gap: 12px;
+    padding: 20px 4px;
+  }
+
+  .ml-subject-title {
+    font-size: 1.2rem;
+  }
+
+  .ml-subject-description {
+    font-size: 0.82rem;
+  }
+
+  .ml-tech-list {
+    grid-template-columns: 1fr;
+  }
+
+  .ml-formula-entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ml-formula-expression {
+    justify-self: start;
+  }
+
+  .ml-statement {
+    padding: 36px 0;
+  }
+
+  .ml-feature-row {
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+  }
+  }
