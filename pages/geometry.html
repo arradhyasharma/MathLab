@@ -332,7 +332,182 @@
         </div>
       </section>
 
-      <!-- EXPERIMENT 03 -->
+      <!-- EXPERIMENT 03: HERON'S FORMULA -->
+
+<section class="concept-section">
+  <div class="concept-heading">
+    <div>
+      <p class="eyebrow">05 / CONCEPT</p>
+      <h2>Heron's formula</h2>
+    </div>
+    <span class="concept-number">G—03</span>
+  </div>
+
+  <div class="concept-layout">
+    <div class="concept-text">
+      <p>
+        Heron's formula calculates the area of a triangle
+        when all three side lengths are known.
+      </p>
+      <p>
+        First calculate the semi-perimeter, then use it
+        to find the area.
+      </p>
+      <div class="definition-note">
+        <strong>Remember</strong>
+        The three side lengths must satisfy the triangle
+        inequality.
+      </div>
+    </div>
+
+    <div class="equation-display">
+      <span class="equation-label">HERON'S FORMULA</span>
+      <div class="big-equation">√[s(s−a)(s−b)(s−c)]</div>
+      <span class="equation-caption">
+        s = (a + b + c) ÷ 2
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="tool-section">
+  <div class="tool-heading">
+    <div>
+      <p class="eyebrow">06 / INTERACTIVE EXPERIMENT</p>
+      <h2>Heron's formula calculator</h2>
+    </div>
+    <span class="tool-status">TRIANGLE AREA</span>
+  </div>
+
+  <p class="tool-description">
+    Enter the three sides of a triangle to calculate
+    its area using Heron's formula.
+  </p>
+
+  <div class="calculator-card">
+    <div class="calculator-top">
+      <span>EXPERIMENT 03</span>
+      <span>HERON'S FORMULA</span>
+    </div>
+
+    <div class="input-grid">
+      <div class="field">
+        <label for="heronA">Side a</label>
+        <input id="heronA" type="number" value="13" min="0" step="any">
+      </div>
+
+      <div class="field">
+        <label for="heronB">Side b</label>
+        <input id="heronB" type="number" value="14" min="0" step="any">
+      </div>
+
+      <div class="field">
+        <label for="heronC">Side c</label>
+        <input id="heronC" type="number" value="15" min="0" step="any">
+      </div>
+    </div>
+
+    <div class="calculator-actions">
+      <button class="action-button" id="calculateHeron">
+        Calculate area ↗
+      </button>
+      <button class="reset-button" id="resetHeron">
+        Reset
+      </button>
+    </div>
+
+    <div class="result-area" id="heronResult" aria-live="polite">
+      <span class="result-placeholder">
+        Your Heron's formula calculation will appear here.
+      </span>
+    </div>
+  </div>
+</section>
+
+      <!-- EXPERIMENT 04: EQUILATERAL TRIANGLE -->
+
+<section class="concept-section">
+  <div class="concept-heading">
+    <div>
+      <p class="eyebrow">07 / CONCEPT</p>
+      <h2>Equilateral triangles</h2>
+    </div>
+    <span class="concept-number">G—04</span>
+  </div>
+
+  <div class="concept-layout">
+    <div class="concept-text">
+      <p>
+        An equilateral triangle has three equal sides
+        and three equal interior angles.
+      </p>
+      <p>
+        Each angle measures 60°. Its area and height
+        can be calculated directly from its side length.
+      </p>
+      <div class="definition-note">
+        <strong>Remember</strong>
+        All three sides are equal, and all three
+        interior angles are equal.
+      </div>
+    </div>
+
+    <div class="equation-display">
+      <span class="equation-label">EQUILATERAL TRIANGLE</span>
+      <div class="big-equation">A = (√3/4)a²</div>
+      <span class="equation-caption">
+        Height = (√3/2)a · Perimeter = 3a
+      </span>
+    </div>
+  </div>
+</section>
+
+<section class="tool-section">
+  <div class="tool-heading">
+    <div>
+      <p class="eyebrow">08 / INTERACTIVE EXPERIMENT</p>
+      <h2>Equilateral triangle explorer</h2>
+    </div>
+    <span class="tool-status">SPECIAL TRIANGLE</span>
+  </div>
+
+  <p class="tool-description">
+    Enter one side length to calculate the area,
+    height, perimeter and interior angles.
+  </p>
+
+  <div class="calculator-card">
+    <div class="calculator-top">
+      <span>EXPERIMENT 04</span>
+      <span>ALL SIDES EQUAL</span>
+    </div>
+
+    <div class="input-grid">
+      <div class="field">
+        <label for="equilateralSide">Side length (a)</label>
+        <input id="equilateralSide" type="number"
+          value="6" min="0" step="any">
+      </div>
+    </div>
+
+    <div class="calculator-actions">
+      <button class="action-button" id="calculateEquilateral">
+        Calculate ↗
+      </button>
+      <button class="reset-button" id="resetEquilateral">
+        Reset
+      </button>
+    </div>
+
+    <div class="result-area" id="equilateralResult" aria-live="polite">
+      <span class="result-placeholder">
+        Your equilateral triangle calculations will appear here.
+      </span>
+    </div>
+  </div>
+</section>
+
+      <!-- EXPERIMENT 05 -->
 
       <section class="concept-section">
         <div class="concept-heading">
@@ -375,7 +550,7 @@
       <section class="tool-section">
         <div class="tool-heading">
           <div>
-            <p class="eyebrow">06 / INTERACTIVE EXPERIMENT</p>
+            <p class="eyebrow">09 / INTERACTIVE EXPERIMENT</p>
             <h2>Quadrilateral explorer</h2>
           </div>
           <span class="tool-status">SHAPE CALCULATOR</span>
@@ -388,34 +563,55 @@
 
         <div class="calculator-card">
           <div class="calculator-top">
-            <span>EXPERIMENT 03</span>
+            <span>EXPERIMENT 05</span>
             <span>AREA & PERIMETER</span>
           </div>
 
           <div class="field">
             <label for="quadType">Choose a shape</label>
             <select id="quadType">
-              <option value="square">Square</option>
-              <option value="rectangle">Rectangle</option>
-              <option value="parallelogram">Parallelogram</option>
+  <option value="square">Square</option>
+  <option value="rectangle">Rectangle</option>
+  <option value="parallelogram">Parallelogram</option>
+  <option value="rhombus">Rhombus</option>
+  <option value="trapezium">Trapezium</option>
             </select>
           </div>
 
           <div class="input-grid">
-            <div class="field">
-              <label for="quadLength" id="quadLengthLabel">Side length</label>
-              <input id="quadLength" type="number" value="5" min="0" step="any">
-            </div>
 
-            <div class="field" id="quadSecondField">
-              <label for="quadWidth" id="quadWidthLabel">Width</label>
-              <input id="quadWidth" type="number" value="5" min="0" step="any">
-            </div>
+  <div class="field">
+    <label for="quadLength" id="quadLengthLabel">Side length</label>
+    <input id="quadLength" type="number"
+      value="5" min="0" step="any">
+  </div>
 
-            <div class="field" id="quadHeightField" hidden>
-              <label for="quadHeight">Perpendicular height</label>
-              <input id="quadHeight" type="number" value="4" min="0" step="any">
-            </div>
+  <div class="field" id="quadSecondField">
+    <label for="quadWidth" id="quadWidthLabel">Width</label>
+    <input id="quadWidth" type="number"
+      value="3" min="0" step="any">
+  </div>
+
+  <div class="field" id="quadThirdField" hidden>
+    <label for="quadSideC" id="quadSideCLabel">Side C</label>
+    <input id="quadSideC" type="number"
+      value="5" min="0" step="any">
+  </div>
+
+  <div class="field" id="quadFourthField" hidden>
+    <label for="quadSideD" id="quadSideDLabel">Side D</label>
+    <input id="quadSideD" type="number"
+      value="5" min="0" step="any">
+  </div>
+
+  <div class="field" id="quadHeightField" hidden>
+    <label for="quadHeight" id="quadHeightLabel">
+      Perpendicular height
+    </label>
+    <input id="quadHeight" type="number"
+      value="4" min="0" step="any">
+  </div>
+
           </div>
 
           <div class="calculator-actions">
