@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1120">
+    <title>MathLab</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a class="logo" href="#home">Math<span>Lab</span></a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#labs">Math Labs</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <p class="tagline">LEARN · EXPLORE · DISCOVER</p>
+        <h1>Mathematics, <span>Made Interactive.</span></h1>
+        <p class="hero-text">
+            Explore mathematical concepts through experiments,
+            visualisations and interactive tools.
+        </p>
+        <a href="#labs" class="primary-button">Explore MathLab</a>
+    </section>
+
+    <section class="section" id="labs">
+        <div class="section-heading">
+            <p class="tagline">YOUR LEARNING SPACE</p>
+            <h2>Mathematics Labs</h2>
+            <p>Select a laboratory to start exploring.</p>
+        </div>
+
+        <div class="lab-grid">
+            <article class="lab-card">
+                <span class="lab-number">01</span>
+                <h3>Algebra Lab</h3>
+                <p>Explore polynomials, equations and algebraic concepts.</p>
+                <button class="text-button" onclick="openLab('algebra')">
+                    Open Laboratory →
+                </button>
+            </article>
+
+            <article class="lab-card">
+                <span class="lab-number">02</span>
+                <h3>Geometry Lab</h3>
+                <p>Experiment with triangles, angles and quadrilaterals.</p>
+                <button class="text-button" onclick="openLab('geometry')">
+                    Open Laboratory →
+                </button>
+            </article>
+
+            <article class="lab-card">
+                <span class="lab-number">03</span>
+                <h3>Coordinate Geometry</h3>
+                <p>Plot points and explore the Cartesian coordinate plane.</p>
+                <button class="text-button" onclick="openLab('coordinates')">
+                    Open Laboratory →
+                </button>
+            </article>
+        </div>
+    </section>
+
+    <section class="workspace" id="workspace">
+        <div class="workspace-heading">
+            <div>
+                <p class="tagline">INTERACTIVE WORKSPACE</p>
+                <h2 id="workspace-title">Select a Mathematics Lab</h2>
+                <p id="workspace-description">
+                    Choose one of the laboratories above to begin.
+                </p>
+            </div>
+            <button class="secondary-button" onclick="closeLab()">
+                Close Lab
+            </button>
+        </div>
+
+        <!-- ALGEBRA LAB -->
+        <div class="lab-panel" id="algebra-panel">
+            <div class="tool-grid">
+
+                <div class="tool-card">
+                    <h3>Polynomial Explorer</h3>
+                    <p class="muted">
+                        Explore a quadratic polynomial in the form
+                        ax² + bx + c.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Coefficient a
+                            <input type="number" id="poly-a" value="1" step="any">
+                        </label>
+                        <label>
+                            Coefficient b
+                            <input type="number" id="poly-b" value="-5" step="any">
+                        </label>
+                        <label>
+                            Constant c
+                            <input type="number" id="poly-c" value="6" step="any">
+                        </label>
+                        <label>
+                            Value of x
+                            <input type="number" id="poly-x" value="2" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="calculatePolynomial()">
+                        Analyse Polynomial
+                    </button>
+
+                    <div class="result-box" id="poly-result" aria-live="polite">
+                        Your polynomial results will appear here.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Linear Equation Solver</h3>
+                    <p class="muted">
+                        Solve an equation in the form ax + b = c.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Coefficient a
+                            <input type="number" id="eq-a" value="2" step="any">
+                        </label>
+                        <label>
+                            Constant b
+                            <input type="number" id="eq-b" value="4" step="any">
+                        </label>
+                        <label>
+                            Right side c
+                            <input type="number" id="eq-c" value="12" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="solveEquation()">
+                        Solve Equation
+                    </button>
+
+                    <div class="result-box" id="equation-result" aria-live="polite">
+                        Your solution will appear here.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GEOMETRY LAB -->
+        <div class="lab-panel" id="geometry-panel">
+            <div class="tool-grid">
+
+                <div class="tool-card">
+                    <h3>Triangle Calculator</h3>
+                    <p class="muted">
+                        Calculate the perimeter and area using Heron's formula.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Side a
+                            <input type="number" id="side-a" value="3" min="0" step="any">
+                        </label>
+                        <label>
+                            Side b
+                            <input type="number" id="side-b" value="4" min="0" step="any">
+                        </label>
+                        <label>
+                            Side c
+                            <input type="number" id="side-c" value="5" min="0" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="calculateTriangle()">
+                        Calculate Triangle
+                    </button>
+
+                    <div class="result-box" id="triangle-result" aria-live="polite">
+                        Triangle results will appear here.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Angle Sum Explorer</h3>
+                    <p class="muted">
+                        Check the interior angles of a triangle.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Angle A (°)
+                            <input type="number" id="angle-a" value="60" step="any">
+                        </label>
+                        <label>
+                            Angle B (°)
+                            <input type="number" id="angle-b" value="60" step="any">
+                        </label>
+                        <label>
+                            Angle C (°)
+                            <input type="number" id="angle-c" value="60" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="calculateAngles()">
+                        Check Angles
+                    </button>
+
+                    <div class="result-box" id="angle-result" aria-live="polite">
+                        Angle results will appear here.
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Quadrilateral Explorer</h3>
+                    <p class="muted">
+                        Calculate the perimeter and check the angle sum.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Side 1
+                            <input type="number" id="quad-a" value="5" min="0" step="any">
+                        </label>
+                        <label>
+                            Side 2
+                            <input type="number" id="quad-b" value="4" min="0" step="any">
+                        </label>
+                        <label>
+                            Side 3
+                            <input type="number" id="quad-c" value="5" min="0" step="any">
+                        </label>
+                        <label>
+                            Side 4
+                            <input type="number" id="quad-d" value="4" min="0" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="calculateQuadrilateral()">
+                        Calculate Perimeter
+                    </button>
+
+                    <div class="result-box" id="quad-result" aria-live="polite">
+                        Quadrilateral results will appear here.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- COORDINATE GEOMETRY LAB -->
+        <div class="lab-panel" id="coordinates-panel">
+            <div class="coordinate-layout">
+
+                <div class="tool-card">
+                    <h3>Point Plotter</h3>
+                    <p class="muted">
+                        Enter coordinates to plot a point on the Cartesian plane.
+                        The graph covers -10 to 10 on both axes.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            X coordinate
+                            <input type="number" id="point-x" value="3" min="-10" max="10" step="any">
+                        </label>
+                        <label>
+                            Y coordinate
+                            <input type="number" id="point-y" value="4" min="-10" max="10" step="any">
+                        </label>
+                    </div>
+
+                    <button class="primary-button" onclick="addPoint()">
+                        Plot Point
+                    </button>
+
+                    <div class="result-box" id="point-result" aria-live="polite">
+                        Your point information will appear here.
+                    </div>
+
+                    <h4 class="subheading">Plotted Points</h4>
+                    <ul class="point-list" id="point-list">
+                        <li>No points plotted yet.</li>
+                    </ul>
+
+                    <div class="button-row">
+                        <button class="secondary-button" onclick="connectPoints()">
+                            Connect Points
+                        </button>
+                        <button class="secondary-button" onclick="clearPoints()">
+                            Clear Graph
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card graph-card">
+                    <h3>Cartesian Coordinate Plane</h3>
+                    <p class="muted">
+                        You can also tap on the graph to plot a point.
+                    </p>
+                    <div class="canvas-wrap">
+                        <canvas id="coordinate-canvas"
+                                aria-label="Interactive Cartesian coordinate plane"></canvas>
+                    </div>
+                    <p class="graph-note">
+                        Horizontal axis: X · Vertical axis: Y
+                    </p>
+                </div>
+
+                <div class="tool-card line-tool">
+                    <h3>Straight Line Explorer</h3>
+                    <p class="muted">
+                        Explore a straight line using y = mx + c.
+                    </p>
+
+                    <div class="input-grid">
+                        <label>
+                            Slope (m)
+                            <input type="number" id="line-m" value="2" step="any">
+                        </label>
+                        <label>
+                            Y-intercept (c)
+                            <input type="number" id="line-c" value="1" step="any">
+                        </label>
+                    </div>
+
+                    <div class="button-row">
+                        <button class="primary-button" onclick="drawLine()">
+                            Draw Line
+                        </button>
+                        <button class="secondary-button" onclick="clearLine()">
+                            Remove Line
+                        </button>
+                    </div>
+
+                    <div class="result-box" id="line-result" aria-live="polite">
+                        Enter a slope and intercept to draw a line.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <p class="tagline">ABOUT THE PROJECT</p>
+        <h2>Understanding Through Exploration</h2>
+        <p>
+            MathLab is an educational project designed to help students
+            explore mathematics using interactive tools and visual learning.
+        </p>
+        <p class="copyright">MathLab · Educational Project · Class 9</p>
+    </section>
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
