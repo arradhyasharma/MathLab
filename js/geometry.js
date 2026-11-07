@@ -190,6 +190,14 @@ function calculateTriangle() {
   const b = geometryNumber("sideB");
   const c = geometryNumber("sideC");
 
+   if (Math.abs(a - base) > 0.000001) {
+  geometryError(
+    triangleResult,
+    "For this experiment, Side A must equal the entered base."
+  );
+  return;
+   }
+
   if ([base, height, a, b, c].some(value => value === null)) {
     geometryError(
       triangleResult,
