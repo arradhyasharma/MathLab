@@ -4,649 +4,511 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Explore triangles, angles and quadrilaterals in the MathLab Geometry Lab.">
-  <title>Geometry Lab — MathLab</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Explore triangles, quadrilaterals and geometric formulas in the MathLab Geometry Lab.">
+  <title>Geometry Lab | MathLab</title>
 
   <link rel="stylesheet" href="../css/main.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/labs.css">
-
-  <script src="../js/navigation.js" defer></script>
-  <script src="../js/geometry.js" defer></script>
 </head>
 
 <body>
-<div class="site-shell">
+  <div class="site-shell">
 
-  <header class="topbar">
-    <a class="brand" href="../index.html">
-      <span class="brand-mark">M<span>.</span></span>
-      <span class="brand-name">MathLab</span>
-    </a>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">M.</span>
+        <span>MathLab</span>
+      </a>
 
-    <nav class="top-links" aria-label="Main navigation">
-      <a class="top-link" href="../index.html">Overview</a>
-      <a class="top-link active" href="geometry.html">Explore labs</a>
-      <a class="top-link" href="challenges.html">Challenges</a>
-      <a class="top-link" href="formulas.html">Formula library</a>
-    </nav>
+      <nav class="top-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="formulas.html">Formula Library</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="about.html">About</a>
+      </nav>
 
-    <div class="top-actions">
-      <span class="edition-label">CLASS 09</span>
-      <button class="theme-toggle" id="themeToggle" type="button"
-        aria-label="Switch colour theme">
-        <span id="themeIcon">◐</span>
-        <span class="theme-text">Theme</span>
-      </button>
-      <button class="menu-toggle" id="menuToggle" type="button"
-        aria-label="Open navigation" aria-expanded="false">Menu</button>
-    </div>
-  </header>
-
-  <div class="page-layout">
+      <div class="top-actions">
+        <button class="icon-button" id="themeToggle" type="button"
+          aria-label="Switch colour theme" title="Switch theme">
+          ◐
+        </button>
+        <button class="icon-button" id="menuToggle" type="button"
+          aria-label="Toggle navigation menu" aria-expanded="false">
+          ☰
+        </button>
+      </div>
+    </header>
 
     <aside class="sidebar" id="sidebar">
-      <div class="sidebar-heading">WORKSPACE</div>
+      <div class="sidebar-heading">LEARNING LABS</div>
 
-      <a class="side-link" href="../index.html">
-        <span class="side-index">00</span>
-        <span>Overview</span>
-      </a>
+      <nav class="sidebar-nav" aria-label="Learning labs">
+        <a href="algebra.html">01 — Algebra</a>
+        <a href="geometry.html" class="active" aria-current="page">02 — Geometry</a>
+        <a href="coordinates.html">03 — Coordinate Geometry</a>
+        <a href="statistics.html">04 — Statistics</a>
+        <a href="probability.html">05 — Probability</a>
+      </nav>
 
-      <div class="sidebar-heading section-gap">MATHEMATICS LABS</div>
+      <div class="sidebar-heading">MORE</div>
+      <nav class="sidebar-nav" aria-label="More pages">
+        <a href="challenges.html">Challenge Centre</a>
+        <a href="formulas.html">Formula Library</a>
+        <a href="about.html">About MathLab</a>
+      </nav>
 
-      <a class="side-link" href="algebra.html">
-        <span class="side-index">01</span>
-        <span>Algebra</span>
-      </a>
-
-      <a class="side-link selected" href="geometry.html">
-        <span class="side-index">02</span>
-        <span>Geometry</span>
-      </a>
-
-      <a class="side-link" href="coordinates.html">
-        <span class="side-index">03</span>
-        <span>Coordinate geometry</span>
-      </a>
-
-      <a class="side-link" href="statistics.html">
-        <span class="side-index">04</span>
-        <span>Statistics</span>
-      </a>
-
-      <a class="side-link" href="probability.html">
-        <span class="side-index">05</span>
-        <span>Probability</span>
-      </a>
-
-      <div class="sidebar-heading section-gap">REFERENCE</div>
-
-      <a class="side-link" href="challenges.html">
-        <span class="side-index">06</span>
-        <span>Challenge centre</span>
-      </a>
-
-      <a class="side-link" href="formulas.html">
-        <span class="side-index">07</span>
-        <span>Formula library</span>
-      </a>
-
-      <div class="sidebar-bottom">
-        <div class="sidebar-note">
-          Mathematics begins with asking why.
-        </div>
-        <a class="about-link" href="about.html">About this project ↗</a>
+      <div class="sidebar-note">
+        <span class="eyebrow">CURRENT MODULE</span>
+        <p>Geometry</p>
+        <span class="muted-text">Shapes · Angles · Measurement</span>
       </div>
     </aside>
 
     <main class="main-content">
 
-      <div class="breadcrumb">
-        <a href="../index.html">WORKSPACE</a>
-        <span>/</span>
-        <span>MATHEMATICS LABS</span>
-        <span>/</span>
-        <span>GEOMETRY</span>
-        <span class="breadcrumb-spacer"></span>
-        <span>LAB 02</span>
-      </div>
-
-      <section class="lab-intro">
-        <p class="eyebrow">MATHEMATICS LAB · 02</p>
-        <h1>Geometry<span class="heading-period">.</span></h1>
-
-        <p class="lab-lead">
-          Shapes are not just drawings. Explore their angles,
-          dimensions and properties, and discover the rules
-          that connect them.
+      <section class="page-intro">
+        <div class="eyebrow">MATHLAB / EXPERIMENT 02</div>
+        <h1>Geometry Lab</h1>
+        <p class="page-description">
+          Study the properties of shapes, investigate angle relationships
+          and calculate geometric measurements through interactive experiments.
         </p>
 
-        <div class="topic-meta">
-  <span>CLASS 09</span>
-  <span>TRIANGLES</span>
-  <span>HERON'S FORMULA</span>
-  <span>QUADRILATERALS</span>
+        <div class="intro-meta">
+          <span>5 EXPERIMENTS</span>
+          <span>CLASS 9 MATHEMATICS</span>
+          <span>INTERACTIVE LEARNING</span>
+        </div>
+      </section>
+
+      <section class="concept-section">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">THE FOUNDATION</div>
+            <h2>Understanding geometry</h2>
+          </div>
+          <span class="section-index">G—00</span>
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <span class="concept-number">01</span>
+            <h3>Angles</h3>
+            <p>
+              Angles measure the amount of rotation between two rays.
+              A triangle always has an interior angle sum of 180°.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <span class="concept-number">02</span>
+            <h3>Perimeter</h3>
+            <p>
+              Perimeter is the total distance around a closed two-dimensional
+              shape.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <span class="concept-number">03</span>
+            <h3>Area</h3>
+            <p>
+              Area measures the surface enclosed by a two-dimensional
+              geometric figure.
+            </p>
+          </article>
         </div>
       </section>
 
       <!-- EXPERIMENT 01 -->
-
-      <section class="concept-section">
-        <div class="concept-heading">
+      <section class="experiment-section" id="angleExperiment">
+        <div class="section-heading">
           <div>
-            <p class="eyebrow">01 / CONCEPT</p>
-            <h2>The angle-sum property</h2>
+            <div class="eyebrow">EXPERIMENT 01</div>
+            <h2>Triangle Angle Explorer</h2>
           </div>
-          <span class="concept-number">G—01</span>
+          <span class="section-index">G—01</span>
         </div>
 
-        <div class="concept-layout">
-          <div class="concept-text">
-            <p>
-              The sum of the three interior angles of every
-              triangle is always 180°.
-            </p>
-
-            <p>
-              Change the angles in the experiment below.
-              Check whether they can form a triangle.
-            </p>
-
-            <div class="definition-note">
-              <strong>Remember</strong>
-              A triangle must have three positive interior angles
-              whose sum is exactly 180°.
-            </div>
-          </div>
-
-          <div class="equation-display">
-            <span class="equation-label">TRIANGLE PROPERTY</span>
-            <div class="big-equation">A + B + C = 180°</div>
-            <span class="equation-caption">
-              Sum of interior angles
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section class="tool-section">
-        <div class="tool-heading">
-          <div>
-            <p class="eyebrow">02 / INTERACTIVE EXPERIMENT</p>
-            <h2>Triangle angle explorer</h2>
-          </div>
-          <span class="tool-status">ANGLE CHECKER</span>
-        </div>
-
-        <p class="tool-description">
-          Enter three angles and discover whether they
-          satisfy the triangle angle-sum property.
+        <p class="section-description">
+          Enter the three interior angles of a triangle. Investigate whether
+          they satisfy the angle-sum property.
         </p>
 
-        <div class="calculator-card">
-          <div class="calculator-top">
-            <span>EXPERIMENT 01</span>
-            <span>A + B + C = 180°</span>
+        <div class="tool-card">
+          <div class="tool-card-header">
+            <div>
+              <span class="tool-label">ANGLE INVESTIGATION</span>
+              <h3>Test the 180° property</h3>
+            </div>
+            <span class="tool-symbol">∠</span>
           </div>
 
           <div class="input-grid">
             <div class="field">
-              <label for="angleA">Angle A (°)</label>
-              <input id="angleA" type="number" value="60" min="0" step="any">
+              <label for="angleA">Angle A (degrees)</label>
+              <input type="number" id="angleA" min="0" max="180"
+                step="any" placeholder="e.g. 60">
             </div>
 
             <div class="field">
-              <label for="angleB">Angle B (°)</label>
-              <input id="angleB" type="number" value="60" min="0" step="any">
+              <label for="angleB">Angle B (degrees)</label>
+              <input type="number" id="angleB" min="0" max="180"
+                step="any" placeholder="e.g. 60">
             </div>
 
             <div class="field">
-              <label for="angleC">Angle C (°)</label>
-              <input id="angleC" type="number" value="60" min="0" step="any">
+              <label for="angleC">Angle C (degrees)</label>
+              <input type="number" id="angleC" min="0" max="180"
+                step="any" placeholder="e.g. 60">
             </div>
           </div>
 
-          <div class="calculator-actions">
-            <button class="action-button" id="checkAngles">
-              Check angles ↗
+          <div class="button-row">
+            <button class="primary-button" id="calculateAngles" type="button">
+              Check angles
             </button>
-            <button class="reset-button" id="resetAngles">
+            <button class="secondary-button" id="resetAngles" type="button">
               Reset
             </button>
           </div>
 
-          <div class="result-area" id="angleResult" aria-live="polite">
-            <span class="result-placeholder">
-              Your angle analysis will appear here.
-            </span>
+          <div class="result-panel" id="angleResult" aria-live="polite">
+            <p class="result-placeholder">
+              Your angle investigation will appear here.
+            </p>
           </div>
         </div>
       </section>
 
       <!-- EXPERIMENT 02 -->
-
-      <section class="concept-section">
-        <div class="concept-heading">
+      <section class="experiment-section" id="triangleExperiment">
+        <div class="section-heading">
           <div>
-            <p class="eyebrow">03 / CONCEPT</p>
-            <h2>Area and perimeter</h2>
+            <div class="eyebrow">EXPERIMENT 02</div>
+            <h2>Triangle Calculator</h2>
           </div>
-          <span class="concept-number">G—02</span>
+          <span class="section-index">G—02</span>
         </div>
 
-        <div class="concept-layout">
-          <div class="concept-text">
-            <p>
-              Area measures the surface covered by a shape.
-              Perimeter measures the total distance around
-              its boundary.
-            </p>
-
-            <p>
-              For a triangle, area is half the product of its
-              base and perpendicular height.
-            </p>
-
-            <div class="definition-note">
-              <strong>Remember</strong>
-              Area is measured in square units. Perimeter
-              is measured in ordinary units.
-            </div>
-          </div>
-
-          <div class="equation-display">
-            <span class="equation-label">TRIANGLE AREA</span>
-            <div class="big-equation">½ × b × h</div>
-            <span class="equation-caption">
-              b = base, h = perpendicular height
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section class="tool-section">
-        <div class="tool-heading">
-          <div>
-            <p class="eyebrow">04 / INTERACTIVE EXPERIMENT</p>
-            <h2>Triangle calculator</h2>
-          </div>
-          <span class="tool-status">AREA & PERIMETER</span>
-        </div>
-
-        <p class="tool-description">
-          Calculate the area using the base and height.
-          Enter all three side lengths to calculate the perimeter.
+        <p class="section-description">
+          Calculate the area using a base and perpendicular height, and
+          calculate the perimeter using all three side lengths.
         </p>
 
-        <div class="calculator-card">
-          <div class="calculator-top">
-            <span>EXPERIMENT 02</span>
-            <span>AREA = ½ × BASE × HEIGHT</span>
+        <div class="tool-card">
+          <div class="tool-card-header">
+            <div>
+              <span class="tool-label">MEASUREMENT TOOL</span>
+              <h3>Area and perimeter</h3>
+            </div>
+            <span class="tool-symbol">△</span>
+          </div>
+
+          <div class="formula-strip">
+            <div>
+              <span>AREA</span>
+              <strong>A = ½ × b × h</strong>
+            </div>
+            <div>
+              <span>PERIMETER</span>
+              <strong>P = a + b + c</strong>
+            </div>
           </div>
 
           <div class="input-grid">
             <div class="field">
               <label for="triangleBase">Base</label>
-              <input id="triangleBase" type="number" value="10" min="0" step="any">
+              <input type="number" id="triangleBase" min="0"
+                step="any" placeholder="Enter base">
             </div>
 
             <div class="field">
               <label for="triangleHeight">Perpendicular height</label>
-              <input id="triangleHeight" type="number" value="6" min="0" step="any">
+              <input type="number" id="triangleHeight" min="0"
+                step="any" placeholder="Enter height">
             </div>
 
             <div class="field">
-              <label for="sideA">Side A</label>
-              <input id="sideA" type="number" value="10" min="0" step="any">
+              <label for="triangleSideA">Side A</label>
+              <input type="number" id="triangleSideA" min="0"
+                step="any" placeholder="Enter side A">
             </div>
 
             <div class="field">
-              <label for="sideB">Side B</label>
-              <input id="sideB" type="number" value="8" min="0" step="any">
+              <label for="triangleSideB">Side B</label>
+              <input type="number" id="triangleSideB" min="0"
+                step="any" placeholder="Enter side B">
             </div>
 
             <div class="field">
-              <label for="sideC">Side C</label>
-              <input id="sideC" type="number" value="8" min="0" step="any">
+              <label for="triangleSideC">Side C</label>
+              <input type="number" id="triangleSideC" min="0"
+                step="any" placeholder="Enter side C">
             </div>
           </div>
 
-          <div class="calculator-actions">
-            <button class="action-button" id="calculateTriangle">
-              Calculate ↗
+          <div class="button-row">
+            <button class="primary-button" id="calculateTriangle" type="button">
+              Calculate
             </button>
-            <button class="reset-button" id="resetTriangle">
+            <button class="secondary-button" id="resetTriangle" type="button">
               Reset
             </button>
           </div>
 
-          <div class="result-area" id="triangleResult" aria-live="polite">
-            <span class="result-placeholder">
-              Your triangle calculations will appear here.
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- EXPERIMENT 03: HERON'S FORMULA -->
-
-<section class="concept-section">
-  <div class="concept-heading">
-    <div>
-      <p class="eyebrow">05 / CONCEPT</p>
-      <h2>Heron's formula</h2>
-    </div>
-    <span class="concept-number">G—03</span>
-  </div>
-
-  <div class="concept-layout">
-    <div class="concept-text">
-      <p>
-        Heron's formula calculates the area of a triangle
-        when all three side lengths are known.
-      </p>
-      <p>
-        First calculate the semi-perimeter, then use it
-        to find the area.
-      </p>
-      <div class="definition-note">
-        <strong>Remember</strong>
-        The three side lengths must satisfy the triangle
-        inequality.
-      </div>
-    </div>
-
-    <div class="equation-display">
-      <span class="equation-label">HERON'S FORMULA</span>
-      <div class="big-equation">√[s(s−a)(s−b)(s−c)]</div>
-      <span class="equation-caption">
-        s = (a + b + c) ÷ 2
-      </span>
-    </div>
-  </div>
-</section>
-
-<section class="tool-section">
-  <div class="tool-heading">
-    <div>
-      <p class="eyebrow">06 / INTERACTIVE EXPERIMENT</p>
-      <h2>Heron's formula calculator</h2>
-    </div>
-    <span class="tool-status">TRIANGLE AREA</span>
-  </div>
-
-  <p class="tool-description">
-    Enter the three sides of a triangle to calculate
-    its area using Heron's formula.
-  </p>
-
-  <div class="calculator-card">
-    <div class="calculator-top">
-      <span>EXPERIMENT 03</span>
-      <span>HERON'S FORMULA</span>
-    </div>
-
-    <div class="input-grid">
-      <div class="field">
-        <label for="heronA">Side a</label>
-        <input id="heronA" type="number" value="13" min="0" step="any">
-      </div>
-
-      <div class="field">
-        <label for="heronB">Side b</label>
-        <input id="heronB" type="number" value="14" min="0" step="any">
-      </div>
-
-      <div class="field">
-        <label for="heronC">Side c</label>
-        <input id="heronC" type="number" value="15" min="0" step="any">
-      </div>
-    </div>
-
-    <div class="calculator-actions">
-      <button class="action-button" id="calculateHeron">
-        Calculate area ↗
-      </button>
-      <button class="reset-button" id="resetHeron">
-        Reset
-      </button>
-    </div>
-
-    <div class="result-area" id="heronResult" aria-live="polite">
-      <span class="result-placeholder">
-        Your Heron's formula calculation will appear here.
-      </span>
-    </div>
-  </div>
-</section>
-
-      <!-- EXPERIMENT 04: EQUILATERAL TRIANGLE -->
-
-<section class="concept-section">
-  <div class="concept-heading">
-    <div>
-      <p class="eyebrow">07 / CONCEPT</p>
-      <h2>Equilateral triangles</h2>
-    </div>
-    <span class="concept-number">G—04</span>
-  </div>
-
-  <div class="concept-layout">
-    <div class="concept-text">
-      <p>
-        An equilateral triangle has three equal sides
-        and three equal interior angles.
-      </p>
-      <p>
-        Each angle measures 60°. Its area and height
-        can be calculated directly from its side length.
-      </p>
-      <div class="definition-note">
-        <strong>Remember</strong>
-        All three sides are equal, and all three
-        interior angles are equal.
-      </div>
-    </div>
-
-    <div class="equation-display">
-      <span class="equation-label">EQUILATERAL TRIANGLE</span>
-      <div class="big-equation">A = (√3/4)a²</div>
-      <span class="equation-caption">
-        Height = (√3/2)a · Perimeter = 3a
-      </span>
-    </div>
-  </div>
-</section>
-
-<section class="tool-section">
-  <div class="tool-heading">
-    <div>
-      <p class="eyebrow">08 / INTERACTIVE EXPERIMENT</p>
-      <h2>Equilateral triangle explorer</h2>
-    </div>
-    <span class="tool-status">SPECIAL TRIANGLE</span>
-  </div>
-
-  <p class="tool-description">
-    Enter one side length to calculate the area,
-    height, perimeter and interior angles.
-  </p>
-
-  <div class="calculator-card">
-    <div class="calculator-top">
-      <span>EXPERIMENT 04</span>
-      <span>ALL SIDES EQUAL</span>
-    </div>
-
-    <div class="input-grid">
-      <div class="field">
-        <label for="equilateralSide">Side length (a)</label>
-        <input id="equilateralSide" type="number"
-          value="6" min="0" step="any">
-      </div>
-    </div>
-
-    <div class="calculator-actions">
-      <button class="action-button" id="calculateEquilateral">
-        Calculate ↗
-      </button>
-      <button class="reset-button" id="resetEquilateral">
-        Reset
-      </button>
-    </div>
-
-    <div class="result-area" id="equilateralResult" aria-live="polite">
-      <span class="result-placeholder">
-        Your equilateral triangle calculations will appear here.
-      </span>
-    </div>
-  </div>
-</section>
-
-      <!-- EXPERIMENT 05 -->
-
-      <section class="concept-section">
-        <div class="concept-heading">
-          <div>
-            <p class="eyebrow">05 / CONCEPT</p>
-            <h2>Understanding quadrilaterals</h2>
-          </div>
-          <span class="concept-number">G—03</span>
-        </div>
-
-        <div class="concept-layout">
-          <div class="concept-text">
-            <p>
-              A quadrilateral is a closed polygon with four
-              sides and four interior angles.
+          <div class="result-panel" id="triangleResult" aria-live="polite">
+            <p class="result-placeholder">
+              Triangle measurements will appear here.
             </p>
-
-      <p>
-  Squares, rectangles, parallelograms, rhombuses
-  and trapeziums are examples of quadrilaterals.
-      </p>
-
-            <div class="definition-note">
-              <strong>Remember</strong>
-              The sum of the interior angles of a quadrilateral
-              is always 360°.
-            </div>
-          </div>
-
-          <div class="equation-display">
-            <span class="equation-label">QUADRILATERAL PROPERTY</span>
-            <div class="big-equation">360°</div>
-            <span class="equation-caption">
-              Sum of interior angles
-            </span>
           </div>
         </div>
       </section>
 
-      <section class="tool-section">
-        <div class="tool-heading">
+      <!-- EXPERIMENT 03 -->
+      <section class="experiment-section" id="heronExperiment">
+        <div class="section-heading">
           <div>
-            <p class="eyebrow">09 / INTERACTIVE EXPERIMENT</p>
-            <h2>Quadrilateral explorer</h2>
+            <div class="eyebrow">EXPERIMENT 03</div>
+            <h2>Heron's Formula Calculator</h2>
           </div>
-          <span class="tool-status">SHAPE CALCULATOR</span>
+          <span class="section-index">G—03</span>
         </div>
 
-        <p class="tool-description">
-          Select a shape, enter its dimensions and calculate
-          its area and perimeter.
+        <p class="section-description">
+          Find the area of a triangle when all three side lengths are known,
+          even when its height is not given.
         </p>
 
-        <div class="calculator-card">
-          <div class="calculator-top">
-            <span>EXPERIMENT 05</span>
-            <span>AREA & PERIMETER</span>
+        <div class="tool-card">
+          <div class="tool-card-header">
+            <div>
+              <span class="tool-label">FORMULA INVESTIGATION</span>
+              <h3>Area from three sides</h3>
+            </div>
+            <span class="tool-symbol">√</span>
           </div>
 
-          <div class="field">
-            <label for="quadType">Choose a shape</label>
-            <select id="quadType">
-  <option value="square">Square</option>
-  <option value="rectangle">Rectangle</option>
-  <option value="parallelogram">Parallelogram</option>
-  <option value="rhombus">Rhombus</option>
-  <option value="trapezium">Trapezium</option>
-            </select>
+          <div class="formula-strip">
+            <div>
+              <span>SEMI-PERIMETER</span>
+              <strong>s = (a + b + c) / 2</strong>
+            </div>
+            <div>
+              <span>HERON'S FORMULA</span>
+              <strong>A = √[s(s − a)(s − b)(s − c)]</strong>
+            </div>
           </div>
 
           <div class="input-grid">
+            <div class="field">
+              <label for="heronA">Side a</label>
+              <input type="number" id="heronA" min="0"
+                step="any" placeholder="Enter side a">
+            </div>
 
-  <div class="field">
-    <label for="quadLength" id="quadLengthLabel">Side length</label>
-    <input id="quadLength" type="number" value="5" min="0" step="any">
-  </div>
+            <div class="field">
+              <label for="heronB">Side b</label>
+              <input type="number" id="heronB" min="0"
+                step="any" placeholder="Enter side b">
+            </div>
 
-  <div class="field" id="quadSecondField" hidden>
-    <label for="quadWidth" id="quadWidthLabel">Width</label>
-    <input id="quadWidth" type="number" value="3" min="0" step="any">
-  </div>
-
-  <div class="field" id="quadThirdField" hidden>
-    <label for="quadSideC" id="quadSideCLabel">Side C</label>
-    <input id="quadSideC" type="number" value="5" min="0" step="any">
-  </div>
-
-  <div class="field" id="quadFourthField" hidden>
-    <label for="quadSideD" id="quadSideDLabel">Side D</label>
-    <input id="quadSideD" type="number" value="5" min="0" step="any">
-  </div>
-
-  <div class="field" id="quadHeightField" hidden>
-    <label for="quadHeight" id="quadHeightLabel">Perpendicular height</label>
-    <input id="quadHeight" type="number" value="4" min="0" step="any">
-  </div>
-
+            <div class="field">
+              <label for="heronC">Side c</label>
+              <input type="number" id="heronC" min="0"
+                step="any" placeholder="Enter side c">
+            </div>
           </div>
 
-          <div class="calculator-actions">
-            <button class="action-button" id="calculateQuadrilateral">
-              Calculate ↗
+          <div class="button-row">
+            <button class="primary-button" id="calculateHeron" type="button">
+              Find area
             </button>
-            <button class="reset-button" id="resetQuadrilateral">
+            <button class="secondary-button" id="resetHeron" type="button">
               Reset
             </button>
           </div>
 
-          <div class="result-area" id="quadResult" aria-live="polite">
-            <span class="result-placeholder">
-              Your shape calculations will appear here.
-            </span>
+          <div class="result-panel" id="heronResult" aria-live="polite">
+            <p class="result-placeholder">
+              Heron's formula solution will appear here.
+            </p>
           </div>
         </div>
       </section>
 
-      <section class="learning-note">
-        <div class="note-symbol">△</div>
-        <div>
-          <p class="eyebrow">A MATHEMATICAL REMINDER</p>
-          <h3>Look beyond the shape.</h3>
-          <p>
-            Try changing the dimensions and angles. Observe
-            which properties stay the same and which change.
-            Geometry is the study of these relationships.
-          </p>
+      <!-- EXPERIMENT 04 -->
+      <section class="experiment-section" id="equilateralExperiment">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">EXPERIMENT 04</div>
+            <h2>Equilateral Triangle Explorer</h2>
+          </div>
+          <span class="section-index">G—04</span>
+        </div>
+
+        <p class="section-description">
+          Explore a special triangle in which all three sides and all three
+          interior angles are equal.
+        </p>
+
+        <div class="tool-card">
+          <div class="tool-card-header">
+            <div>
+              <span class="tool-label">SPECIAL TRIANGLE</span>
+              <h3>Investigate equal sides</h3>
+            </div>
+            <span class="tool-symbol">△</span>
+          </div>
+
+          <div class="formula-strip">
+            <div>
+              <span>AREA</span>
+              <strong>A = (√3 / 4) × a²</strong>
+            </div>
+            <div>
+              <span>HEIGHT</span>
+              <strong>h = (√3 / 2) × a</strong>
+            </div>
+          </div>
+
+          <div class="input-grid">
+            <div class="field">
+              <label for="equilateralSide">Length of each side</label>
+              <input type="number" id="equilateralSide" min="0"
+                step="any" placeholder="Enter side length">
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="primary-button" id="calculateEquilateral" type="button">
+              Explore triangle
+            </button>
+            <button class="secondary-button" id="resetEquilateral" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div class="result-panel" id="equilateralResult" aria-live="polite">
+            <p class="result-placeholder">
+              Equilateral triangle properties will appear here.
+            </p>
+          </div>
         </div>
       </section>
 
+      <!-- EXPERIMENT 05 -->
+      <section class="experiment-section" id="quadrilateralExperiment">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">EXPERIMENT 05</div>
+            <h2>Quadrilateral Explorer</h2>
+          </div>
+          <span class="section-index">G—05</span>
+        </div>
+
+        <p class="section-description">
+          Compare the area and perimeter of different quadrilaterals.
+          Select a shape to display the measurements required for its calculation.
+        </p>
+
+        <div class="tool-card">
+          <div class="tool-card-header">
+            <div>
+              <span class="tool-label">SHAPE INVESTIGATION</span>
+              <h3>Choose a quadrilateral</h3>
+            </div>
+            <span class="tool-symbol">◇</span>
+          </div>
+
+          <div class="field">
+            <label for="quadType">Select shape</label>
+            <select id="quadType">
+              <option value="square">Square</option>
+              <option value="rectangle">Rectangle</option>
+              <option value="parallelogram">Parallelogram</option>
+              <option value="rhombus">Rhombus</option>
+              <option value="trapezium">Trapezium</option>
+            </select>
+          </div>
+
+          <div class="input-grid" id="quadrilateralInputs">
+
+            <div class="field" id="quadFirstField">
+              <label for="quadLength" id="quadLengthLabel">Side length</label>
+              <input type="number" id="quadLength" min="0"
+                step="any" placeholder="Enter side length">
+            </div>
+
+            <div class="field" id="quadSecondField">
+              <label for="quadWidth" id="quadWidthLabel">Width</label>
+              <input type="number" id="quadWidth" min="0"
+                step="any" placeholder="Enter width">
+            </div>
+
+            <div class="field" id="quadThirdField">
+              <label for="quadSideC" id="quadSideCLabel">Diagonal 1</label>
+              <input type="number" id="quadSideC" min="0"
+                step="any" placeholder="Enter value">
+            </div>
+
+            <div class="field" id="quadFourthField">
+              <label for="quadSideD" id="quadSideDLabel">Diagonal 2</label>
+              <input type="number" id="quadSideD" min="0"
+                step="any" placeholder="Enter value">
+            </div>
+
+            <div class="field" id="quadHeightField">
+              <label for="quadHeight" id="quadHeightLabel">Perpendicular height</label>
+              <input type="number" id="quadHeight" min="0"
+                step="any" placeholder="Enter height">
+            </div>
+
+          </div>
+
+          <p class="field-hint" id="quadHint">
+            Enter the length of one side of the square.
+          </p>
+
+          <div class="button-row">
+            <button class="primary-button" id="calculateQuadrilateral" type="button">
+              Calculate shape
+            </button>
+            <button class="secondary-button" id="resetQuadrilateral" type="button">
+              Reset
+            </button>
+          </div>
+
+          <div class="result-panel" id="quadrilateralResult" aria-live="polite">
+            <p class="result-placeholder">
+              Quadrilateral calculations will appear here.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="closing-note">
+        <div class="eyebrow">END OF MODULE</div>
+        <h2>Geometry is more than formulas.</h2>
+        <p>
+          It is the study of relationships between shapes, measurements,
+          angles and space. Use these experiments to understand why the
+          formulas work, not just to obtain an answer.
+        </p>
+        <a href="formulas.html" class="text-link">Explore the Formula Library →</a>
+      </section>
+
       <footer class="site-footer">
-        <div class="footer-brand">MathLab<span>.</span></div>
-        <p>Geometry Lab · Experiment 01–05</p>
-        <a class="footer-code" href="../index.html">BACK TO OVERVIEW ↑</a>
+        <span>MathLab · Interactive Mathematics Lab</span>
+        <span>Geometry Module</span>
       </footer>
 
     </main>
   </div>
-</div>
+
+  <script src="../js/navigation.js"></script>
+  <script src="../js/geometry.js"></script>
 </body>
-        </html>
-        
+  </html>
+  
