@@ -530,3 +530,33 @@ html[data-theme="dark"] .action-button {
     width: 100%;
   }
 }
+/* ---------- GEOMETRY LAB: EXTENDED EXPERIMENTS ---------- */
+
+#quadSecondField[hidden],
+#quadThirdField[hidden],
+#quadFourthField[hidden],
+#quadHeightField[hidden] {
+  display: none !important;
+}
+
+#heronResult,
+#equilateralResult,
+#quadResult {
+  overflow-wrap: anywhere;
+}
+
+#heronResult .step-list,
+#equilateralResult .step-list,
+#quadResult .step-list {
+  padding-left: 22px;
+}
+
+@media (max-width: 600px) {
+  .calculator-actions {
+    flex-wrap: wrap;
+  }
+
+  .calculator-actions button {
+    flex: 1 1 100%;
+  }
+}
