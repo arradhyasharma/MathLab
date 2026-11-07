@@ -99,6 +99,29 @@
     /* Motion */
     --transition-fast: 150ms ease;
     --transition-normal: 250ms ease;
+      
+    --ml-bg: var(--color-background);
+    --ml-bg-secondary: var(--color-surface-muted);
+    --ml-text: var(--color-text);
+    --ml-text-muted: var(--color-text-secondary);
+    --ml-text-subtle: var(--color-text-muted);
+
+    --ml-primary: var(--color-primary);
+    --ml-primary-hover: var(--color-primary-hover);
+    --ml-primary-soft: var(--color-primary-soft);
+    --ml-accent: var(--color-accent);
+
+    --ml-border: var(--color-border);
+    --ml-font-display: var(--font-display);
+    --ml-font-mono: var(--font-mono);
+
+    --ml-transition: var(--transition-normal);
+    --ml-radius-sm: var(--radius-sm);
+
+    --ml-success: var(--color-success);
+    --ml-success-soft: var(--color-success-soft);
+    --ml-error: var(--color-error);
+    --ml-error-soft: var(--color-error-soft);
 }
 
 
