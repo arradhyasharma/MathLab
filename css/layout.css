@@ -180,9 +180,8 @@
     border-radius: var(--radius-md);
 }
 
-.ml-sidebar-label {
+.ml-sidebar-heading {
     margin-bottom: var(--space-4);
-
     color: var(--color-text-muted);
     font-family: var(--font-mono);
     font-size: var(--text-xs);
@@ -498,4 +497,9 @@
     .ml-header-actions {
         gap: var(--space-2);
     }
+}
+.ml-header-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
 }
