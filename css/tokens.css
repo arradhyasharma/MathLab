@@ -1,0 +1,197 @@
+
+/* =========================================
+   MATHLAB — DESIGN TOKENS
+   Editorial + Scientific Hybrid
+   ========================================= */
+
+/* 01. LIGHT THEME */
+
+:root {
+    color-scheme: light;
+
+    /* Backgrounds */
+    --color-background: #F5F2EA;
+    --color-surface: #FFFEFA;
+    --color-surface-muted: #EEEAE0;
+    --color-surface-raised: #FFFFFF;
+
+    /* Text */
+    --color-text: #202623;
+    --color-text-secondary: #626B64;
+    --color-text-muted: #858C84;
+
+    /* Brand colours */
+    --color-primary: #254E45;
+    --color-primary-hover: #1B3E36;
+    --color-primary-soft: #E1EAE4;
+
+    --color-accent: #C56B4B;
+    --color-accent-soft: #F3E5DC;
+
+    --color-highlight: #D8A64A;
+    --color-highlight-soft: #F4ECD9;
+
+    /* Functional colours */
+    --color-success: #397653;
+    --color-success-soft: #E5EFE7;
+
+    --color-error: #B34D43;
+    --color-error-soft: #F5E5E1;
+
+    --color-warning: #A87925;
+    --color-warning-soft: #F4ECD9;
+
+    /* Borders */
+    --color-border: #DDD9CF;
+    --color-border-strong: #C9C4B8;
+
+    /* Typography */
+    --font-display: "Georgia", "Times New Roman", serif;
+    --font-body: "Inter", "Segoe UI", Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", "Consolas", monospace;
+
+    /* Font sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.375rem;
+    --text-2xl: 1.875rem;
+    --text-3xl: 2.5rem;
+    --text-display: clamp(2.5rem, 6vw, 4.75rem);
+
+    /* Font weights */
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+
+    /* Spacing scale */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+
+    /* Layout */
+    --page-width: 1440px;
+    --content-width: 1120px;
+    --reading-width: 760px;
+    --sidebar-width: 250px;
+    --header-height: 72px;
+
+    /* Borders and corners */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 18px;
+
+    /* Shadows */
+    --shadow-soft: 0 2px 10px rgba(32, 38, 35, 0.05);
+    --shadow-medium: 0 8px 24px rgba(32, 38, 35, 0.08);
+
+    /* Motion */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+}
+
+
+/* 02. DARK THEME */
+
+:root[data-theme="dark"],
+body[data-theme="dark"],
+body.dark-theme {
+    color-scheme: dark;
+
+    --color-background: #18211E;
+    --color-surface: #202B26;
+    --color-surface-muted: #26332D;
+    --color-surface-raised: #2B3831;
+
+    --color-text: #E8E9E1;
+    --color-text-secondary: #B4BDB5;
+    --color-text-muted: #89968C;
+
+    --color-primary: #91B7A2;
+    --color-primary-hover: #A8CBB7;
+    --color-primary-soft: #2D4438;
+
+    --color-accent: #E29A79;
+    --color-accent-soft: #49352E;
+
+    --color-highlight: #E3BD70;
+    --color-highlight-soft: #453B29;
+
+    --color-success: #8FC5A0;
+    --color-success-soft: #294334;
+
+    --color-error: #E39488;
+    --color-error-soft: #472F2C;
+
+    --color-warning: #E3BD70;
+    --color-warning-soft: #453B29;
+
+    --color-border: #39473F;
+    --color-border-strong: #506057;
+
+    --shadow-soft: 0 2px 10px rgba(0, 0, 0, 0.15);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+
+/* 03. GLOBAL DESIGN BEHAVIOUR */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    background: var(--color-background);
+}
+
+body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.65;
+    transition:
+        background-color var(--transition-normal),
+        color var(--transition-normal);
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+::selection {
+    background: var(--color-primary-soft);
+    color: var(--color-text);
+}
