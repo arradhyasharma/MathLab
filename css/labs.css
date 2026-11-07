@@ -413,3 +413,81 @@ html[data-theme="dark"] .action-button {
     gap: 12px;
   }
 }
+
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-left: 24px;
+  margin: 20px 0;
+}
+
+.step-item {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.step-item[hidden] {
+  display: none;
+}
+
+.step-number {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+.step-content {
+  display: block;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.step-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.step-button {
+  padding: 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.step-button:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.step-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.step-button-secondary {
+  background: transparent;
+}
+
+.verification-note {
+  margin-top: 16px;
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
