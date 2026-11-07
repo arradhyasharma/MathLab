@@ -491,3 +491,42 @@ html[data-theme="dark"] .action-button {
   line-height: 1.6;
   font-size: 0.9rem;
 }
+/* ---------- GEOMETRY LAB ---------- */
+
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+.field select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.step-item[hidden],
+#quadSecondField[hidden],
+#quadHeightField[hidden] {
+  display: none;
+}
+
+#angleResult,
+#triangleResult,
+#quadResult {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .step-controls {
+    flex-direction: column;
+  }
+
+  .step-controls .step-button {
+    width: 100%;
+  }
+}
